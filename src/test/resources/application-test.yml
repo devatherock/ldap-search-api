@@ -1,0 +1,4 @@
+ldap:
+  host: ldaps://ldap.jumpcloud.com:636
+  username: devatherock
+  password: dummy
