@@ -1,5 +1,6 @@
 package io.github.devatherock.ldapsearch.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -31,15 +32,15 @@ public class LdapSearchController {
      * 
      * @param baseDn
      * @param filter
-     * @return the search result
+     * @return the search results
      * @throws NamingException
      */
     @Get(value = "/search")
-    public HttpResponse<Map<String, Object>> search(@Nullable @QueryValue(value = "base_dn") String baseDn,
+    public HttpResponse<List<Map<String, Object>>> search(@Nullable @QueryValue(value = "base_dn") String baseDn,
             @QueryValue String filter) throws NamingException {
-        HttpResponse<Map<String, Object>> response = null;
+        HttpResponse<List<Map<String, Object>>> response = null;
 
-        Map<String, Object> responseBody = searchService.search(baseDn, filter);
+        List<Map<String, Object>> responseBody = searchService.search(baseDn, filter);
         if (responseBody.size() == 0) {
             response = HttpResponse.notFound(responseBody);
         } else {

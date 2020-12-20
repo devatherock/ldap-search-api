@@ -45,10 +45,10 @@ public class LdapSearchService {
      * 
      * @param inputBaseDn
      * @param filter
-     * @return the search result
+     * @return the search results
      * @throws NamingException
      */
-    public Map<String, Object> search(String inputBaseDn, String filter) throws NamingException {
+    public List<Map<String, Object>> search(String inputBaseDn, String filter) throws NamingException {
         // If the credentials are not valid, the constructor
         // will throw an exception
         LdapContext ldapContext = new InitialLdapContext(initializeLdapEnvironment(), null);
@@ -62,14 +62,17 @@ public class LdapSearchService {
         ldapContext.setRequestControls(null);
 
         NamingEnumeration<SearchResult> results = null;
-        Map<String, Object> finalResult = new HashMap<>();
+        Map<String, Object> transformedResult = null;
+        List<Map<String, Object>> finalResult = new ArrayList<>();
 
         try {
             // Execute the search
             results = ldapContext.search(baseDn, filter, searchControls);
 
             while (results.hasMoreElements()) {
-                readAttributes(finalResult, results.next().getAttributes());
+                transformedResult = new HashMap<>();
+                readAttributes(transformedResult, results.next().getAttributes());
+                finalResult.add(transformedResult);
             }
             results.close();
         } catch (NameNotFoundException e) {

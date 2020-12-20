@@ -42,6 +42,32 @@ docker run --rm \
 ### Endpoints
 - `/search?filter=<an ldap query>` - Searches LDAP under the given base DN with the supplied filter criteria
 
+### Sample response
+```json
+[
+    {
+        "loginShell": "/bin/bash",
+        "uid": "testdummy",
+        "homeDirectory": "/home/test",
+        "mail": "test.dummy@dummy.com",
+        "uidNumber": "1234",
+        "givenName": "Test",
+        "objectClass": [
+            "top",
+            "person",
+            "organizationalPerson",
+            "inetOrgPerson",
+            "shadowAccount",
+            "posixAccount",
+            "jumpcloudUser"
+        ],
+        "sn": "User",
+        "gidNumber": "1234",
+        "cn": "Test User"
+    }
+]
+```
+
 ## Troubleshooting
 ### Enabling debug logs
 - Set the environment variable `LOGGING_LEVEL_ROOT` to `DEBUG` to enable all debug logs - custom and framework
