@@ -69,6 +69,7 @@ ext.jacoco = [
         // TODO Remove exclusions once tests have been written
         'io/github/devatherock/ldapsearch/controllers/LdapSearchController.class',
         'io/github/devatherock/ldapsearch/config/LdapProperties.class',
+        'io/github/devatherock/ldapsearch/config/ObjectMapperBeanEventListener.class',
         'io/github/devatherock/ldapsearch/service/LdapSearchService.class'
     ]
 ]
