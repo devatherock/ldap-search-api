@@ -1,0 +1,138 @@
+slack_image: &slack_image
+  docker:
+    - image: devatherock/simple-slack:0.4.0
+      auth:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
+
+orbs:
+  docker: circleci/docker@1.5.0
+  gradle: circleci/gradle@2.2.0
+
+work_directory: &work_directory
+  working_directory: ~/ldap-search-api
+
+resource_class: &resource_class
+  resource_class: small
+  
+executors:
+  jdk-executor:
+    docker:
+      - image: devatherock/graalvm:0.2.0
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+    <<: *resource_class
+    <<: *work_directory
+    environment:
+      # To generate swagger UI
+      JAVA_TOOL_OPTIONS: '-Dmicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop'
+  docker-executor:
+    docker:
+      - image: cimg/openjdk:11.0
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+    <<: *resource_class
+    <<: *work_directory
+
+version: 2.1
+jobs:
+  publish_release:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker
+      - attach_workspace:
+          at: ~/ldap-search-api
+      - run: |
+          TAG=${CIRCLE_TAG#v}
+          DEV_TAG=${CIRCLE_SHA1:0:8}
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker pull devatherock/ldap-search-api:$DEV_TAG
+          docker tag devatherock/ldap-search-api:$DEV_TAG devatherock/ldap-search-api:$TAG
+          docker push devatherock/ldap-search-api:$TAG
+
+  notify_success:
+    <<: *slack_image
+    <<: *resource_class
+    environment:
+      TEXT: "Success: {{.CircleBuildUrl}} by {{.CircleUsername}}"
+      CHANNEL: general
+      TITLE: "Build completed"
+    steps:
+      - run: /bin/simpleslack -c "#33ad7f" || true
+
+workflows:
+  version: 2.1
+  build_publish:
+    jobs:
+      - gradle/run:
+          name: build
+          executor: jdk-executor
+          context:
+            - docker-credentials
+            - sonar-credentials
+          filters:
+            branches:
+              only: master
+          command: build coveralls sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          pre-steps:
+            - run:
+                command: |
+                  git clone --depth=1 --branch=master https://github.com/devatherock/gradle-includes.git ../gradle-includes
+          post-steps:
+            - persist_to_workspace:
+                root: ~/ldap-search-api
+                paths:
+                  - build
+      - docker/publish:
+          name: publish
+          executor: docker-executor
+          context:
+            - docker-credentials
+          requires:
+            - build
+          image: devatherock/ldap-search-api
+          attach-at: ~/ldap-search-api
+          tag: "${CIRCLE_SHA1:0:8},latest"
+          use-remote-docker: true
+          docker-username: DOCKER_USERNAME
+      - notify_success:
+          context:
+            - docker-credentials
+            - slack-webhook
+          requires:
+            - publish
+  release:
+    jobs:
+      - publish_release:
+          context:
+            - docker-credentials
+          filters:
+            branches:
+              only: non-existent-branch
+            tags:
+              only: /^v[0-9\.]+$/
+      - notify_success:
+          context:
+            - docker-credentials
+            - slack-webhook
+          requires:
+            - publish_release
+  pr_check:
+    jobs:
+      - gradle/run:
+          name: test
+          executor: jdk-executor
+          context:
+            - docker-credentials
+            - sonar-credentials
+          filters:
+            branches:
+              ignore: master
+          command: test sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          pre-steps:
+            - run:
+                command: |
+                  git clone --depth=1 --branch=master https://github.com/devatherock/gradle-includes.git ../gradle-includes
