@@ -22,7 +22,7 @@ docker run --rm \
 ### Configurable properties
 
 | Environment Variable Name             | YAML Variable Name    |   Required   |   Default        |   Description                                                  |
-|---------------------------------------|-----------------------|--------------|-----------------------------------------------------------------------------------|
+|---------------------------------------|-----------------------|--------------|------------------|----------------------------------------------------------------|
 | LDAP_HOST                             | ldap.host             |    true      |   (None)         |   The full host name of the LDAP server. Example: `ldaps://ldap.jumpcloud.com:636` |
 | LDAP_USERNAME                         | ldap.username         |    true      |   (None)         |   The LDAP bind username. Could be a simple username like `devatherock` or a DN like `uid=devatherock,ou=Users,dc=jumpcloud,dc=com` depending on how the LDAP server is configured  |
 | LDAP_PASSWORD                         | ldap.password         |    true      |   (None)         |   The LDAP bind password                                       |
