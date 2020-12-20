@@ -36,7 +36,8 @@ docker run --rm \
 | LOGGING_LEVEL_ROOT                    | (None)                |    false     |   INFO           |   [SLF4J](http://www.slf4j.org/api/org/apache/commons/logging/Log.html) log level, for all(framework and custom) code  |
 | LOGGING_LEVEL_IO_GITHUB_DEVATHEROCK   | (None)                |    false     |   INFO           |   [SLF4J](http://www.slf4j.org/api/org/apache/commons/logging/Log.html) log level, for custom code  |
 | MICRONAUT_SERVER_PORT                 | micronaut.server.port |    false     |   8080           |   Port in which the app listens on                              |
-| MICRONAUT_CONFIG_FILES                | (None)                |    false     |   (None)         |   Path to YAML config files. The YAML files can be used to specify complex, object and array properties  | 
+| MICRONAUT_CONFIG_FILES                | (None)                |    false     |   (None)         |   Path to YAML config files. The YAML files can be used to specify complex, object and array properties  |
+| JACKSON_SERIALIZATION_INDENT_OUTPUT   | jackson.serialization.indent-output  |  false  |  (None)  |   Set to `true` to enable JSON pretty-print of response       |
 | JAVA_OPTS                             | (None)                |    false     |   (None)         |   Additional JVM arguments to be passed to the container's java process  |
 
 ### Endpoints
