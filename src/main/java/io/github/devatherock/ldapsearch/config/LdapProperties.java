@@ -45,7 +45,7 @@ public class LdapProperties {
      */
     @NotBlank(message = "ldap.password not specified")
     private String password;
-    
+
     /**
      * The default base DN to search against
      */
@@ -90,7 +90,8 @@ public class LdapProperties {
         private int maxSize = 8;
 
         /**
-         * The total time a connection in the pool will be kept open, in milliseconds. Defaults to 30 minutes
+         * The total time a connection in the pool will be kept open, in milliseconds.
+         * Defaults to 30 minutes
          */
         private long timeToLiveMillis = 1_800_000;
     }
