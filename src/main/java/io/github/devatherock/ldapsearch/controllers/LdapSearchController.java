@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import javax.naming.NamingException;
 
 import io.github.devatherock.ldapsearch.service.LdapSearchService;
+
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -37,7 +38,8 @@ public class LdapSearchController {
      */
     @Get(value = "/search")
     public HttpResponse<List<Map<String, Object>>> search(@Nullable @QueryValue(value = "base_dn") String baseDn,
-            @QueryValue String filter) throws NamingException {
+                                                          @QueryValue String filter)
+            throws NamingException {
         HttpResponse<List<Map<String, Object>>> response = null;
 
         List<Map<String, Object>> responseBody = searchService.search(baseDn, filter);

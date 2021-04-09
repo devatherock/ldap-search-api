@@ -5,14 +5,14 @@ plugins {
     id 'jacoco'
     id 'org.sonarqube' version '3.0'
     id 'com.github.kt3k.coveralls' version '2.10.2'
+    id 'com.diffplug.spotless' version '5.11.1'
 }
 
-version = "0.1.0"
+version = "0.2.0"
 group = "io.github.devatherock"
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 micronaut {
@@ -65,12 +65,11 @@ run {
 ext.jacoco = [
     exclusions: [
         'io/github/devatherock/ldapsearch/Application.class',
-        
         // TODO Remove exclusions once tests have been written
         'io/github/devatherock/ldapsearch/controllers/LdapSearchController.class',
-        'io/github/devatherock/ldapsearch/config/LdapProperties.class',
+        'io/github/devatherock/ldapsearch/config/LdapProperties*',
         'io/github/devatherock/ldapsearch/config/ObjectMapperBeanEventListener.class',
         'io/github/devatherock/ldapsearch/service/LdapSearchService.class'
     ]
 ]
-apply from: '../gradle-includes/checks.gradle'
+apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/checks.gradle'
