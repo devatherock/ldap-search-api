@@ -54,7 +54,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
-            - gradle-v1
       - run: |
           ./gradlew check sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
       - store_test_results:
@@ -69,7 +68,6 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
-            - gradle-v1
       - run: |
           ./gradlew build coveralls sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
       - persist_to_workspace:
