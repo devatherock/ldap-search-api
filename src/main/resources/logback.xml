@@ -1,7 +1,4 @@
 <configuration>
-	<variable name="LOGGING_LEVEL_ROOT" value="${LOGGING_LEVEL_ROOT:-INFO}" />
-    <variable name="LOGGING_LEVEL_IO_GITHUB_DEVATHEROCK" value="${LOGGING_LEVEL_IO_GITHUB_DEVATHEROCK:-INFO}" />
-
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <!-- encoders are assigned the type
@@ -11,9 +8,8 @@
         </encoder>
     </appender>
 
-    <root level="${LOGGING_LEVEL_ROOT}">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
-    <logger name="io.github.devatherock" level="${LOGGING_LEVEL_IO_GITHUB_DEVATHEROCK}" />
     <logger name="io.micronaut.http.server.netty.NettyHttpServer" level="TRACE" />
 </configuration>

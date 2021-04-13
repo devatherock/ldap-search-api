@@ -3,10 +3,15 @@
 ## [Unreleased]
 ### Added
 - Spotless gradle plugin to format code
+- [#10](https://github.com/devatherock/ldap-search-api/issues/10): Support for JSON logs
 
 ### Changed
 - Upgraded micronaut to `2.4.2`
-- Removed `jcenter`
+
+### Removed
+- `jcenter` maven repo
+- Custom environment variables with `LOGGING_LEVEL` prefix and updated documentation to use environment variables 
+with `LOGGER_LEVELS` prefix supported out of the box by micronaut
 
 ## [0.2.0] - 2020-12-20
 ### Added
