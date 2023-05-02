@@ -11,12 +11,13 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.uri.UriBuilder
-import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import spock.lang.Shared
 import spock.lang.Specification
 
-@MicronautTest
-class LdapSearchControllerSpec extends Specification {
+/**
+ * Test class for {@link LdapSearchController}
+ */
+abstract class LdapSearchControllerSpec extends Specification {
 
     @Shared
     InMemoryDirectoryServer directoryServer

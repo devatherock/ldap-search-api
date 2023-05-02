@@ -1,0 +1,5 @@
+micronaut:
+  http.client.read-timeout: 30
+test:
+  server:
+    url: http://localhost:8080
