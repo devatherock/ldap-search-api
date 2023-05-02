@@ -79,4 +79,6 @@ ext.jacoco = [
         'io/github/devatherock/ldapsearch/service/LdapSearchService.class'
     ]
 ]
+
+apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/integration.gradle'
 apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/checks.gradle'

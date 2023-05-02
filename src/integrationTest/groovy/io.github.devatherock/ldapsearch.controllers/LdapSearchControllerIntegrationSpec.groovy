@@ -1,0 +1,10 @@
+package io.github.devatherock.ldapsearch.controllers
+
+import io.micronaut.test.extensions.spock.annotation.MicronautTest
+
+/**
+ * Integration test for {@link LdapSearchController}
+ */
+@MicronautTest(propertySources = 'classpath:application-integration.yml', startApplication = false)
+class LdapSearchControllerIntegrationSpec extends LdapSearchControllerSpec {
+}
