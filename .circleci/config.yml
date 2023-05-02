@@ -55,7 +55,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew check sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew check sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
       - store_test_results:
           path: build/test-results
   build:

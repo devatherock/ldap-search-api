@@ -1,0 +1,21 @@
+dn: dc=example,dc=com
+dc: example
+objectClass: top
+objectClass: domain
+
+dn: o=deleteMe,dc=example,dc=com
+objectClass: top
+objectClass: organization
+o: deleteMe
+
+dn: cn=uid,o=deleteMe,dc=example,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+uid: testUID
+cn: testUID
+cn: This is a common name for the sub entry.
+sn: This is the surname for the sub entry.
+displayName: This is name commonly displayed for the sub entry.
+employeeNumber: 11111
+description: This is an entry subordinate to o=deleteMe.
+userPassword: testpwd

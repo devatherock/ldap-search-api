@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 ### Added
+- [#2](https://github.com/devatherock/ldap-search-api/issues/2): Unit tests
+
+### Changed
+- Upgraded micronaut to `3.9.1`
+- Upgraded gradle to `7.6.1`
+
+## [0.3.0] - 2021-08-28
+### Added
 - Spotless gradle plugin to format code
 - [#10](https://github.com/devatherock/ldap-search-api/issues/10): Support for JSON logs
 
