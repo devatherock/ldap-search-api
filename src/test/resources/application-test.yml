@@ -1,4 +1,10 @@
 ldap:
-  host: ldaps://ldap.jumpcloud.com:636
-  username: devatherock
-  password: dummy
+  host: ldap://localhost:33389
+  username: cn=Directory Manager
+  password: testpwd
+micronaut:
+  http.client.read-timeout: 30
+  server.port: 8091
+test:
+  server:
+    url: http://localhost:8091
