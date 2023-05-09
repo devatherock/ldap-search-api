@@ -124,7 +124,7 @@ jobs:
       - run: |
           make integration-test
       - store_test_results:
-          path: build/test-results          
+          path: build/test-results
 
   publish_release:
     executor: docker-executor
