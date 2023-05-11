@@ -1,21 +1,44 @@
 dn: dc=example,dc=com
-dc: example
-objectClass: top
 objectClass: domain
-
-dn: o=deleteMe,dc=example,dc=com
 objectClass: top
-objectClass: organization
-o: deleteMe
+dc: example
 
-dn: cn=uid,o=deleteMe,dc=example,dc=com
+dn: ou=Users,dc=example,dc=com
+objectClass: organizationalUnit
 objectClass: top
+ou: Users
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: Groups
+
+dn: cn=Test User,ou=Users,dc=example,dc=com
 objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+cn: Test User
+sn: User
 uid: testUID
-cn: testUID
-cn: This is a common name for the sub entry.
-sn: This is the surname for the sub entry.
-displayName: This is name commonly displayed for the sub entry.
-employeeNumber: 11111
-description: This is an entry subordinate to o=deleteMe.
-userPassword: testpwd
+userPassword: abcd
+
+dn: cn=Santa Claus,ou=Users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Santa Claus
+sn: Claus
+uid: sclaus
+userPassword: abcde
+
+dn: cn=John Steinbeck,ou=Users,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: John Steinbeck
+sn: Steinbeck
+uid: jsteinbeck
+userPassword: abcdef

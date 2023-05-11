@@ -10,6 +10,7 @@ import com.unboundid.ldap.listener.InMemoryListenerConfig
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
+import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.http.uri.UriBuilder
 import spock.lang.Shared
 import spock.lang.Specification
@@ -50,18 +51,88 @@ abstract class LdapSearchControllerSpec extends Specification {
         when:
         String response = httpClient.toBlocking().retrieve(
                 HttpRequest.GET(UriBuilder.of('/search')
-                        .queryParam('filter', 'uid=*').build()))
+                        .queryParam('filter', 'uid=*').build())
+        )
+
+        then:
+        def json = slurper.parseText(response)
+        json.size() == 3
+        verifyResult(json, 'Test User', 'User', 'testUID', 'abcd')
+        verifyResult(json, 'Santa Claus', 'Claus', 'sclaus', 'abcde')
+        verifyResult(json, 'John Steinbeck', 'Steinbeck', 'jsteinbeck', 'abcdef')
+    }
+
+    void 'test search - get specific user'() {
+        when:
+        String response = httpClient.toBlocking().retrieve(
+                HttpRequest.GET(UriBuilder.of('/search')
+                        .queryParam('filter', 'uid=sclaus').build())
+        )
 
         then:
         def json = slurper.parseText(response)
         json.size() == 1
-        json[0]['objectClass'].containsAll(['top', 'inetOrgPerson'])
-        json[0]['uid'] == 'testUID'
-        json[0]['cn'].containsAll(['testUID', 'This is a common name for the sub entry.'])
-        json[0]['sn'] == 'This is the surname for the sub entry.'
-        json[0]['displayName'] == 'This is name commonly displayed for the sub entry.'
-        json[0]['employeeNumber'] == '11111'
-        json[0]['description'] == 'This is an entry subordinate to o=deleteMe.'
-        json[0]['userPassword'] == new String(Base64.encoder.encode('testpwd'.bytes))
+        verifyResult(json, 'Santa Claus', 'Claus', 'sclaus', 'abcde')
+    }
+
+    void 'test search - user not found'() {
+        when:
+        httpClient.toBlocking().retrieve(
+                HttpRequest.GET(UriBuilder.of('/search')
+                        .queryParam('filter', 'uid=dummy').build())
+        )
+
+        then:
+        HttpClientResponseException exception = thrown()
+        exception.status.code == 404
+        def json = slurper.parseText(exception.response.body())
+        json.size() == 0
+    }
+
+    void 'test search - known base_dn specified'() {
+        when:
+        String response = httpClient.toBlocking().retrieve(
+                HttpRequest.GET(UriBuilder.of('/search')
+                        .queryParam('filter', 'uid=sclaus')
+                        .queryParam('base_dn', baseDn)
+                        .build())
+        )
+
+        then:
+        def json = slurper.parseText(response)
+        json.size() == 1
+        verifyResult(json, 'Santa Claus', 'Claus', 'sclaus', 'abcde')
+
+        where:
+        baseDn << [
+                'dc=example,dc=com',
+                'ou=Users,dc=example,dc=com',
+        ]
+    }
+
+    void 'test search - unknown base_dn specified'() {
+        when:
+        httpClient.toBlocking().retrieve(
+                HttpRequest.GET(UriBuilder.of('/search')
+                        .queryParam('filter', 'uid=sclaus')
+                        .queryParam('base_dn', 'dc=dummy,dc=com')
+                        .build())
+        )
+
+        then:
+        HttpClientResponseException exception = thrown()
+        exception.status.code == 404
+        def json = slurper.parseText(exception.response.body())
+        json.size() == 0
+    }
+
+    protected void verifyResult(List results, String commonName, String surname, String userId, String password) {
+        def result = results.find { it['cn'] == commonName }
+
+        assert result != null
+        assert result['objectClass'].containsAll(['top', 'person', 'organizationalPerson', 'inetOrgPerson'])
+        assert result['sn'] == surname
+        assert result['uid'] == userId
+        assert result['userPassword'] == new String(Base64.encoder.encode(password.bytes))
     }
 }
