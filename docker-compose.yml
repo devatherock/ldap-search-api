@@ -5,6 +5,6 @@ services:
     image: devatherock/ldap-search-api:latest
     network_mode: "host"
     environment:
-      - LDAP_HOST=ldap://localhost:33389
-      - LDAP_USERNAME=cn=Directory Manager
-      - LDAP_PASSWORD=testpwd
+      LDAP_HOST: ldap://localhost:33389
+      LDAP_USERNAME: cn=Directory Manager
+      LDAP_PASSWORD: testpwd
