@@ -70,6 +70,7 @@ abstract class LdapSearchControllerSpec extends Specification {
         )
 
         then:
+        response == getExpectedJson()
         def json = slurper.parseText(response)
         json.size() == 1
         verifyResult(json, 'Santa Claus', 'Claus', 'sclaus', 'abcde')
@@ -135,4 +136,6 @@ abstract class LdapSearchControllerSpec extends Specification {
         assert result['uid'] == userId
         assert result['userPassword'] == new String(Base64.encoder.encode(password.bytes))
     }
+
+    abstract protected String getExpectedJson()
 }

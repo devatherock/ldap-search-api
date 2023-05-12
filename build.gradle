@@ -48,6 +48,7 @@ dependencies {
 
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '6.0.8'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
+    testImplementation group: 'ch.qos.logback', name: 'logback-classic'
     testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '3.0.17'
 }
 
@@ -74,7 +75,6 @@ ext.jacoco = [
     exclusions: [
         'io/github/devatherock/ldapsearch/Application.class',
         // TODO Remove exclusions once tests have been written
-        'io/github/devatherock/ldapsearch/config/LdapProperties*',
         'io/github/devatherock/ldapsearch/config/ObjectMapperBeanEventListener.class',
         'io/github/devatherock/ldapsearch/service/LdapSearchService.class'
     ]
