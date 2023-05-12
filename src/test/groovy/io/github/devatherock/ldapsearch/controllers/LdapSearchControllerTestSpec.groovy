@@ -1,6 +1,5 @@
 package io.github.devatherock.ldapsearch.controllers
 
-
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
 
 /**
@@ -8,4 +7,8 @@ import io.micronaut.test.extensions.spock.annotation.MicronautTest
  */
 @MicronautTest
 class LdapSearchControllerTestSpec extends LdapSearchControllerSpec {
+
+    protected String getExpectedJson() {
+        '[{"uid":"sclaus","userPassword":"YWJjZGU=","objectClass":["top","person","organizationalPerson","inetOrgPerson"],"sn":"Claus","cn":"Santa Claus"}]'
+    }
 }

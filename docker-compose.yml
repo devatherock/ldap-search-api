@@ -8,3 +8,4 @@ services:
       LDAP_HOST: ldap://localhost:33389
       LDAP_USERNAME: cn=Directory Manager
       LDAP_PASSWORD: testpwd
+      JACKSON_SERIALIZATION_INDENT_OUTPUT: 'true'
