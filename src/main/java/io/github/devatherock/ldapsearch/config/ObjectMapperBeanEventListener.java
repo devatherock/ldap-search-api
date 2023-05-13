@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.context.event.BeanCreatedEventListener;
+import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.jackson.JacksonConfiguration;
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +28,7 @@ public class ObjectMapperBeanEventListener implements BeanCreatedEventListener<O
         final ObjectMapper objectMapper = event.getBean();
 
         // If pretty-print is enabled, pretty-print arrays as well
-        if (null != jacksonConfig.getSerializationSettings() &&
+        if (CollectionUtils.isNotEmpty(jacksonConfig.getSerializationSettings()) &&
                 Boolean.TRUE.equals(jacksonConfig.getSerializationSettings().get(SerializationFeature.INDENT_OUTPUT))) {
             DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
             prettyPrinter.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
