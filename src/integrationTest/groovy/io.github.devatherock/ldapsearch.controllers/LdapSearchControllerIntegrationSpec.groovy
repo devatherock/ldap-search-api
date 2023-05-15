@@ -11,9 +11,9 @@ class LdapSearchControllerIntegrationSpec extends LdapSearchControllerSpec {
     protected String getExpectedJson() {
         '''
         [
-          { 
-            "uid" : "sclaus",
+          {
             "userPassword" : "YWJjZGU=",
+            "uid" : "sclaus",
             "objectClass" : [
               "top",
               "person",

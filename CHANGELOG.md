@@ -4,7 +4,8 @@
 ### Added
 - [#2](https://github.com/devatherock/ldap-search-api/issues/2): Unit tests
 - [#9](https://github.com/devatherock/ldap-search-api/issues/9): Integration tests
-- Dependency check and codenarc gradle plugins
+- Dependency check plugin
+- Codenarc plugin
 
 ### Changed
 - Upgraded micronaut to `3.9.1`
