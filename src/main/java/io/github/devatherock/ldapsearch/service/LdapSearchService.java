@@ -2,7 +2,6 @@ package io.github.devatherock.ldapsearch.service;
 
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -71,7 +70,7 @@ public class LdapSearchService {
             results = ldapContext.search(baseDn, filter, searchControls);
 
             while (results.hasMoreElements()) {
-                transformedResult = new HashMap<>();
+                transformedResult = new LinkedHashMap<>();
                 readAttributes(transformedResult, results.next().getAttributes());
                 finalResult.add(transformedResult);
             }

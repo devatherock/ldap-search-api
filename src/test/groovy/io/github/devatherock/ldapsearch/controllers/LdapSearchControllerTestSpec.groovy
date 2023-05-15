@@ -9,6 +9,6 @@ import io.micronaut.test.extensions.spock.annotation.MicronautTest
 class LdapSearchControllerTestSpec extends LdapSearchControllerSpec {
 
     protected String getExpectedJson() {
-        '[{"uid":"sclaus","userPassword":"YWJjZGU=","objectClass":["top","person","organizationalPerson","inetOrgPerson"],"sn":"Claus","cn":"Santa Claus"}]'
+        '[{"userPassword":"YWJjZGU=","uid":"sclaus","objectClass":["top","person","organizationalPerson","inetOrgPerson"],"sn":"Claus","cn":"Santa Claus"}]'
     }
 }

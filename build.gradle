@@ -74,8 +74,6 @@ run {
 ext.jacoco = [
     exclusions: [
         'io/github/devatherock/ldapsearch/Application.class',
-        // TODO Remove exclusions once tests have been written
-        'io/github/devatherock/ldapsearch/service/LdapSearchService.class'
     ]
 ]
 
