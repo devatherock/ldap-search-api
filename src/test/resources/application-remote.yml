@@ -1,0 +1,5 @@
+ldap:
+  host: ldaps://ldap.jumpcloud.com:636
+  username: ${JUMPCLOUD_USERNAME}
+  password: ${JUMPCLOUD_PASSWORD}
+  base-dn: ${JUMPCLOUD_BASE_DN}

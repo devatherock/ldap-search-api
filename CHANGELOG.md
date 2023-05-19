@@ -11,6 +11,7 @@
 - Upgraded micronaut to `3.9.1`
 - Upgraded gradle to `7.6.1` and Java to 17
 - Upgraded spotless to `6.18.0`
+- Upgraded lombok to `1.18.26`
 
 ## [0.3.0] - 2021-08-28
 ### Added
