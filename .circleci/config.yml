@@ -122,7 +122,7 @@ jobs:
       - attach_workspace:
           at: ~/ldap-search-api
       - run: |
-          make integration-test
+          make integration-test remote-integration-test
       - store_test_results:
           path: build/test-results
 
@@ -165,6 +165,7 @@ workflows:
           context:
             - docker-credentials
             - sonar-credentials
+            - jumpcloud-credentials
           requires:
             - validate_yamls
       - docker/publish:
@@ -182,6 +183,7 @@ workflows:
       - integration_test:
           context:
             - docker-credentials
+            - jumpcloud-credentials
           requires:
             - publish    
       - notify:
@@ -221,6 +223,7 @@ workflows:
           context:
             - docker-credentials
             - sonar-credentials
+            - jumpcloud-credentials
           <<: *pr_filter
           requires:
             - validate_yamls
