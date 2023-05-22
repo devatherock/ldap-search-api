@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- feat: Added renovate config
+
+## [0.4.0] - 2023-05-22
 ### Added
 - [#2](https://github.com/devatherock/ldap-search-api/issues/2): Unit tests
 - [#9](https://github.com/devatherock/ldap-search-api/issues/9): Integration tests
