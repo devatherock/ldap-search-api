@@ -45,10 +45,11 @@ public class LdapSearchService {
      * 
      * @param inputBaseDn
      * @param filter
+     * @param limit
      * @return the search results
      * @throws NamingException
      */
-    public List<Map<String, Object>> search(String inputBaseDn, String filter) throws NamingException {
+    public List<Map<String, Object>> search(String inputBaseDn, String filter, int limit) throws NamingException {
         // If the credentials are not valid, the constructor
         // will throw an exception
         LdapContext ldapContext = new InitialLdapContext(initializeLdapEnvironment(), null);
@@ -69,7 +70,7 @@ public class LdapSearchService {
             // Execute the search
             results = ldapContext.search(baseDn, filter, searchControls);
 
-            while (results.hasMoreElements()) {
+            while (results.hasMoreElements() && (limit <= 0 || finalResult.size() < limit)) {
                 transformedResult = new LinkedHashMap<>();
                 readAttributes(transformedResult, results.next().getAttributes());
                 finalResult.add(transformedResult);

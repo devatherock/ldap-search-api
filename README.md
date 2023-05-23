@@ -40,8 +40,10 @@ docker run --rm \
 | JACKSON_SERIALIZATION_INDENT_OUTPUT   | jackson.serialization.indent-output  |  false  |  (None)  |   Set to `true` to enable JSON pretty-print of response       |
 | JAVA_OPTS                             | (None)                |    false     |   (None)         |   Additional JVM arguments to be passed to the container's java process  |
 
-### Endpoints
-- `/search?filter=<an ldap query>` - Searches LDAP under the given base DN with the supplied filter criteria
+### API spec
+When the app is running, detailed API documentation can be accessed at `{host}/swagger-ui` or `{host}/swagger/ldap-search-api-{version}.yml`. The available endpoints are listed below for reference:
+
+- `/search?filter=<an ldap query>&limit=<number of results>` - Searches LDAP under the given base DN with the supplied filter criteria
 
 ### Sample response
 ```json
