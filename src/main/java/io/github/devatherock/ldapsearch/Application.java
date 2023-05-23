@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-@OpenAPIDefinition(info = @Info(title = "ldap-search-api", version = "0.1.0"), servers = {
+@OpenAPIDefinition(info = @Info(title = "ldap-search-api", version = "0.5.0"), servers = {
         @Server(url = "http://localhost:8080", description = "The server where the application is hosted. Defaulted to localhost")
 })
 public class Application {

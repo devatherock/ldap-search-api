@@ -1,8 +1,9 @@
 # Changelog
 
 ## [Unreleased]
-### Changed
-- feat: Added renovate config
+### Added
+- Renovate config
+- [#5](https://github.com/devatherock/ldap-search-api/issues/5): Query parameter to limit number of results
 
 ## [0.4.0] - 2023-05-22
 ### Added

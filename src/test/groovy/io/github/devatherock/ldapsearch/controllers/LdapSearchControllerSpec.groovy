@@ -62,6 +62,21 @@ abstract class LdapSearchControllerSpec extends Specification {
         verifyResult(json, 'John Steinbeck', 'Steinbeck', 'jsteinbeck', 'abcdef')
     }
 
+    void 'test search - get all users with limit'() {
+        when:
+        String response = httpClient.toBlocking().retrieve(
+                HttpRequest.GET(UriBuilder.of('/search')
+                        .queryParam('filter', 'uid=*')
+                        .queryParam('limit', '1')
+                        .build())
+        )
+
+        then:
+        def json = slurper.parseText(response)
+        json.size() == 1
+        ['Test User', 'Santa Claus', 'John Steinbeck'].contains(json[0]['cn'])
+    }
+
     void 'test search - get specific user'() {
         when:
         String response = httpClient.toBlocking().retrieve(

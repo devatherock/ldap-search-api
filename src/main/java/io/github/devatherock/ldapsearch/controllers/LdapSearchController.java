@@ -33,16 +33,18 @@ public class LdapSearchController {
      * 
      * @param baseDn
      * @param filter
+     * @param limit
      * @return the search results
      * @throws NamingException
      */
     @Get(value = "/search")
     public HttpResponse<List<Map<String, Object>>> search(@Nullable @QueryValue(value = "base_dn") String baseDn,
-                                                          @QueryValue String filter)
+                                                          @QueryValue String filter,
+                                                          @Nullable @QueryValue(defaultValue = "0") int limit)
             throws NamingException {
         HttpResponse<List<Map<String, Object>>> response = null;
 
-        List<Map<String, Object>> responseBody = searchService.search(baseDn, filter);
+        List<Map<String, Object>> responseBody = searchService.search(baseDn, filter, limit);
         if (responseBody.size() == 0) {
             response = HttpResponse.notFound(responseBody);
         } else {
