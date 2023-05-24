@@ -4,6 +4,7 @@
 ### Added
 - Renovate config
 - [#5](https://github.com/devatherock/ldap-search-api/issues/5): Query parameter to limit number of results
+- [#7](https://github.com/devatherock/ldap-search-api/issues/7): Query parameter to specify the attributes to be returned in the result
 
 ## [0.4.0] - 2023-05-22
 ### Added
