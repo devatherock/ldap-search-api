@@ -20,6 +20,7 @@ import javax.naming.ldap.LdapContext;
 
 import io.github.devatherock.ldapsearch.config.LdapProperties;
 
+import io.micronaut.core.util.CollectionUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,10 +47,12 @@ public class LdapSearchService {
      * @param inputBaseDn
      * @param filter
      * @param limit
+     * @param requiredAttrs
      * @return the search results
      * @throws NamingException
      */
-    public List<Map<String, Object>> search(String inputBaseDn, String filter, int limit) throws NamingException {
+    public List<Map<String, Object>> search(String inputBaseDn, String filter, int limit, List<String> requiredAttrs)
+            throws NamingException {
         // If the credentials are not valid, the constructor
         // will throw an exception
         LdapContext ldapContext = new InitialLdapContext(initializeLdapEnvironment(), null);
@@ -72,7 +75,7 @@ public class LdapSearchService {
 
             while (results.hasMoreElements() && (limit <= 0 || finalResult.size() < limit)) {
                 transformedResult = new LinkedHashMap<>();
-                readAttributes(transformedResult, results.next().getAttributes());
+                readAttributes(transformedResult, results.next().getAttributes(), requiredAttrs);
                 finalResult.add(transformedResult);
             }
             results.close();
@@ -122,7 +125,7 @@ public class LdapSearchService {
         if (null == baseDn) {
             Attributes baseDnAttributes = ldapContext.getAttributes("", new String[] { ATTR_ID_BASE_DN });
             Map<String, Object> baseDnMap = new LinkedHashMap<>();
-            readAttributes(baseDnMap, baseDnAttributes);
+            readAttributes(baseDnMap, baseDnAttributes, null);
             LOGGER.debug("Base DNs: {}", baseDnMap);
 
             Object baseDns = baseDnMap.get(ATTR_ID_BASE_DN);
@@ -142,9 +145,11 @@ public class LdapSearchService {
      * 
      * @param result
      * @param attributes
+     * @param requiredAttrs
      * @throws NamingException
      */
-    private void readAttributes(Map<String, Object> result, Attributes attributes) throws NamingException {
+    private void readAttributes(Map<String, Object> result, Attributes attributes, List<String> requiredAttrs)
+            throws NamingException {
         NamingEnumeration<String> attributeNames = attributes.getIDs();
         String attributeName = null;
         NamingEnumeration<?> attributeValues = null;
@@ -153,25 +158,28 @@ public class LdapSearchService {
 
         while (attributeNames.hasMoreElements()) {
             attributeName = attributeNames.next();
-            attributeValues = attributes.get(attributeName).getAll();
 
-            while (attributeValues.hasMoreElements()) {
-                attributeValue = formatAttributeValue(attributeValues.next());
-                existingAttributeValue = result.get(attributeName);
+            if (CollectionUtils.isEmpty(requiredAttrs) || requiredAttrs.contains(attributeName)) {
+                attributeValues = attributes.get(attributeName).getAll();
 
-                if (existingAttributeValue instanceof List) {
-                    ((List<Object>) existingAttributeValue).add(attributeValue);
-                } else if (null != existingAttributeValue) {
-                    List<Object> newAttributeValue = new ArrayList<>();
-                    newAttributeValue.add(existingAttributeValue);
-                    newAttributeValue.add(attributeValue);
+                while (attributeValues.hasMoreElements()) {
+                    attributeValue = formatAttributeValue(attributeValues.next());
+                    existingAttributeValue = result.get(attributeName);
 
-                    result.put(attributeName, newAttributeValue);
-                } else {
-                    result.put(attributeName, attributeValue);
+                    if (existingAttributeValue instanceof List) {
+                        ((List<Object>) existingAttributeValue).add(attributeValue);
+                    } else if (null != existingAttributeValue) {
+                        List<Object> newAttributeValue = new ArrayList<>();
+                        newAttributeValue.add(existingAttributeValue);
+                        newAttributeValue.add(attributeValue);
+
+                        result.put(attributeName, newAttributeValue);
+                    } else {
+                        result.put(attributeName, attributeValue);
+                    }
                 }
+                attributeValues.close();
             }
-            attributeValues.close();
         }
         attributeNames.close();
     }
