@@ -72,6 +72,7 @@ jobs:
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
+    <<: *resource_class
     <<: *work_directory
     steps:
       - checkout
@@ -91,6 +92,7 @@ jobs:
           ./gradlew check sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
       - store_test_results:
           path: build/test-results
+
   build:
     executor: jdk-executor
     steps:
@@ -114,6 +116,20 @@ jobs:
       - store_test_results:
           path: build/test-results
           
+  dockerhub_readme:
+    machine:
+      image: ubuntu-2204:2023.04.2
+    steps:
+      - checkout
+      - run: |
+          docker run -v $PWD:/workspace \
+              -e DOCKERHUB_USERNAME \
+              -e DOCKERHUB_PASSWORD \
+              -e DOCKERHUB_REPOSITORY='devatherock/ldap-search-api' \
+              -e SHORT_DESCRIPTION='Simple REST API to query a LDAP server' \
+              -e README_FILEPATH='/workspace/README.md' \
+              peterevans/dockerhub-description:3.4.1
+
   integration_test:
     machine:
       image: ubuntu-2004:202010-01
@@ -180,12 +196,18 @@ workflows:
           tag: "${CIRCLE_SHA1:0:8},latest"
           use-remote-docker: true
           docker-username: DOCKER_USERNAME
+      - dockerhub_readme:
+          context:
+            - docker-credentials
+            - dockerhub-readme-credentials
+          requires:
+            - publish
       - integration_test:
           context:
             - docker-credentials
             - jumpcloud-credentials
           requires:
-            - publish    
+            - dockerhub_readme    
       - notify:
           context:
             - docker-credentials
