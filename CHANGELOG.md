@@ -7,6 +7,9 @@
 - [#7](https://github.com/devatherock/ldap-search-api/issues/7): Query parameter to specify the attributes to be returned in the result
 - [#27](https://github.com/devatherock/ldap-search-api/issues/27): Tests for built-in endpoints like `/health`
 
+### Changed
+- [#30](https://github.com/devatherock/ldap-search-api/issues/30): Updated dockerhub readme in CI pipeline
+
 ## [0.4.0] - 2023-05-22
 ### Added
 - [#2](https://github.com/devatherock/ldap-search-api/issues/2): Unit tests
