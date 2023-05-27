@@ -4,6 +4,7 @@
 ### Changed
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.28
 - chore(deps): update plugin com.diffplug.spotless to v6.19.0
+- chore(deps): update plugin org.sonarqube to v4.1.0.3113
 
 ## [0.5.0] - 2023-05-24
 ### Added
