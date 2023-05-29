@@ -1,19 +1,17 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- [#27](https://github.com/devatherock/ldap-search-api/issues/27): Tests for built-in endpoints like `/health`
+
 ### Changed
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.28
 - chore(deps): update plugin com.diffplug.spotless to v6.19.0
 - chore(deps): update plugin org.sonarqube to v4.1.0.3113
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.3
-
-## [0.5.0] - 2023-05-24
-### Added
-- [#27](https://github.com/devatherock/ldap-search-api/issues/27): Tests for built-in endpoints like `/health`
-
-### Changed
 - [#30](https://github.com/devatherock/ldap-search-api/issues/30): Updated dockerhub readme in CI pipeline
 - [#32](https://github.com/devatherock/ldap-search-api/issues/32): Built a multi-arch docker image
+- Used a multi-arch base image
 
 ## [0.5.0] - 2023-05-24
 ### Added
