@@ -9,13 +9,17 @@
 
 ## [0.5.0] - 2023-05-24
 ### Added
-- Renovate config
-- [#5](https://github.com/devatherock/ldap-search-api/issues/5): Query parameter to limit number of results
-- [#7](https://github.com/devatherock/ldap-search-api/issues/7): Query parameter to specify the attributes to be returned in the result
 - [#27](https://github.com/devatherock/ldap-search-api/issues/27): Tests for built-in endpoints like `/health`
 
 ### Changed
 - [#30](https://github.com/devatherock/ldap-search-api/issues/30): Updated dockerhub readme in CI pipeline
+- [#32](https://github.com/devatherock/ldap-search-api/issues/32): Built a multi-arch docker image
+
+## [0.5.0] - 2023-05-24
+### Added
+- Renovate config
+- [#5](https://github.com/devatherock/ldap-search-api/issues/5): Query parameter to limit number of results
+- [#7](https://github.com/devatherock/ldap-search-api/issues/7): Query parameter to specify the attributes to be returned in the result
 
 ## [0.4.0] - 2023-05-22
 ### Added
