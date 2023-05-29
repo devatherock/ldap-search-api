@@ -34,14 +34,14 @@ public class LdapSearchController {
      * @param baseDn
      * @param filter
      * @param limit
-     * @param attributes
+     * @param requiredAttrs
      * @return the search results
      * @throws NamingException
      */
     @Get(value = "/search")
     public HttpResponse<List<Map<String, Object>>> search(@Nullable @QueryValue(value = "base_dn") String baseDn,
                                                           @QueryValue String filter,
-                                                          @Nullable @QueryValue(defaultValue = "0") int limit,
+                                                          @Nullable @QueryValue(defaultValue = "0") Integer limit,
                                                           @Nullable @QueryValue(value = "attributes") List<String> requiredAttrs)
             throws NamingException {
         HttpResponse<List<Map<String, Object>>> response = null;

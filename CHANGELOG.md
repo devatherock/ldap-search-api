@@ -12,6 +12,7 @@
 - [#30](https://github.com/devatherock/ldap-search-api/issues/30): Updated dockerhub readme in CI pipeline
 - [#32](https://github.com/devatherock/ldap-search-api/issues/32): Built a multi-arch docker image
 - Used a multi-arch base image
+- [#39](https://github.com/devatherock/ldap-search-api/issues/39]: Limited heap size in integration tests, to fix the out of memory error
 
 ## [0.5.0] - 2023-05-24
 ### Added

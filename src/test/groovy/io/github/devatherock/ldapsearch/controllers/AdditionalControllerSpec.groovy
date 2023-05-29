@@ -11,7 +11,7 @@ import spock.lang.Unroll
 /**
  * Test for additional endpoints like {@code /health}
  */
-abstract class AdditionalEndpointsSpec extends Specification {
+abstract class AdditionalControllerSpec extends Specification {
 
     @Inject
     @Client('${test.server.url}')
