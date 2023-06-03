@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- chore(deps): update plugin org.sonarqube to v4.2.0.3129
+
+## [1.0.0] - 2023-05-29
 ### Added
 - [#27](https://github.com/devatherock/ldap-search-api/issues/27): Tests for built-in endpoints like `/health`
 
