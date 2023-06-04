@@ -256,6 +256,7 @@ workflows:
           name: integration_test_amd
           context:
             - docker-credentials
+            - jumpcloud-credentials
           runner: machine-executor
           command_args: ''
           requires:
@@ -264,6 +265,7 @@ workflows:
           name: integration_test_arm
           context:
             - docker-credentials
+            - jumpcloud-credentials
           runner: arm-executor
           command_args: 'docker_tag=arm64'
           requires:
