@@ -4,6 +4,7 @@
 ### Changed
 - chore(deps): update plugin org.sonarqube to v4.2.0.3129
 - chore(deps): update dependency gradle to v8
+- fix(deps): update dependency org.spockframework:spock-core to v2.3-groovy-4.0
 
 ## [1.0.0] - 2023-05-29
 ### Added
