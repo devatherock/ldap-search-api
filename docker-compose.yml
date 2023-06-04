@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   ldap-search-api:
-    image: devatherock/ldap-search-api:latest
+    image: devatherock/ldap-search-api:${DOCKER_TAG:-latest}
     network_mode: "host"
     environment:
       LDAP_HOST: ldap://localhost:33389
