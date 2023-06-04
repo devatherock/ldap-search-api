@@ -1,0 +1,28 @@
+{
+  "rules": [
+    {"excludeClasses": "java.lang.Class"},
+    {"excludeClasses": "io.github.devatherock.logback.LogbackConfigInitializerSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.ApplicationSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.config.LdapPropertiesSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.config.ObjectMapperBeanEventListenerSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.AdditionalControllerSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.AdditionalControllerTestSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.LdapSearchControllerSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.LdapSearchControllerTestSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.RemoteUrlsSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.controllers.RemoteUrlsTestSpec"},
+    {"excludeClasses": "io.github.devatherock.ldapsearch.service.LdapSearchServiceSpec"},
+    {"excludeClasses": "io.micronaut.test.**"},
+    {"excludeClasses": "io.micronaut.http.client.**"},
+    {"excludeClasses": "org.spockframework.**"},
+    {"excludeClasses": "org.gradle.**"},
+    {"excludeClasses": "net.sf.cglib.**"},
+    {"excludeClasses": "org.codehaus.groovy.**"},
+    {"excludeClasses": "groovy.lang.**"},
+    {"excludeClasses": "spock.**"},
+    {"excludeClasses": "org.hamcrest.**"},
+    {"excludeClasses": "org.objenesis.**"},
+    {"excludeClasses": "net.bytebuddy.**"},
+    {"excludeClasses": "com.unboundid.**"}
+  ]
+}
