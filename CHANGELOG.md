@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Changed
 - chore(deps): update plugin org.sonarqube to v4.2.0.3129
+- chore(deps): update dependency gradle to v8
 
 ## [1.0.0] - 2023-05-29
 ### Added

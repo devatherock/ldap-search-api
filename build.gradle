@@ -1,6 +1,6 @@
 plugins {
     id("groovy")
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "2.0.8"
     id 'jacoco'
     id 'org.sonarqube' version '4.2.0.3129'
@@ -18,7 +18,6 @@ repositories {
 
 micronaut {
     runtime("netty")
-    testRuntime("spock2")
     processing {
         incremental(true)
         annotations("io.github.devatherock.ldapsearch.*")
@@ -46,6 +45,10 @@ dependencies {
 
     runtimeOnly("ch.qos.logback:logback-classic")
 
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
+    testImplementation group: 'cglib', name: 'cglib-nodep', version: '3.3.0'
+    testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.3'
+    testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '6.0.8'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
     testImplementation group: 'ch.qos.logback', name: 'logback-classic'
@@ -65,6 +68,10 @@ test {
     if (Boolean.getBoolean('graalvm')) {
         jvmArgs("-agentlib:native-image-agent=config-output-dir=$projectDir/src/main/graal")
     }
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
 
 run {
