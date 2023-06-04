@@ -4,6 +4,13 @@ slack_image: &slack_image
       auth:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
+        
+docker_executor_image: &docker_executor_image
+  docker:
+    - image: cimg/openjdk:17.0
+      auth:
+        username: $DOCKER_USERNAME
+        password: $DOCKER_PASSWORD
 
 work_directory: &work_directory
   working_directory: ~/ldap-search-api
@@ -26,7 +33,7 @@ pr_filter: &pr_filter
 executors:
   jdk-executor:
     docker:
-      - image: devatherock/graalvm:ol8-java17-22.3.2-1
+      - image: devatherock/graalvm:ol8-java17-22.1.0-1
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
@@ -36,12 +43,22 @@ executors:
       # To generate swagger UI
       JAVA_TOOL_OPTIONS: '-Dmicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop'
   docker-executor:
-    docker:
-      - image: cimg/openjdk:17.0
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+    <<: *docker_executor_image
     <<: *resource_class
+    <<: *work_directory
+  native-image-executor:
+    <<: *docker_executor_image
+    resource_class: medium
+    <<: *work_directory
+  machine-executor:
+    machine:
+      image: ubuntu-2204:2023.04.2
+    resource_class: medium
+    <<: *work_directory
+  arm-executor:
+    machine:
+      image: ubuntu-2004:2022.04.1
+    resource_class: arm.medium
     <<: *work_directory
 
 version: 2.1
@@ -114,7 +131,7 @@ jobs:
           path: build/test-results
           
   publish:
-    executor: docker-executor
+    executor: native-image-executor
     steps:
       - checkout
       - setup_remote_docker
@@ -122,18 +139,29 @@ jobs:
           at: ~/ldap-search-api
       - run: |
           TAG=${CIRCLE_SHA1:0:8}
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker buildx create --name rockbuilder \
-            --driver docker-container --use --bootstrap
-          docker buildx build \
-            --platform linux/amd64,linux/arm64 \
-            --push \
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker build \
             -t devatherock/ldap-search-api:$TAG \
-            -t devatherock/ldap-search-api:latest .
+            -t devatherock/ldap-search-api:latest \
+            -t devatherock/ldap-search-api:amd64 .
+          docker image push --all-tags devatherock/ldap-search-api
+            
+  publish_arm:
+    executor: arm-executor
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/ldap-search-api
+      - run: |
+          TAG=${CIRCLE_SHA1:0:8}-arm64
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker build \
+            -t devatherock/ldap-search-api:$TAG \
+            -t devatherock/ldap-search-api:arm64 .
+          docker image push --all-tags devatherock/ldap-search-api
           
   dockerhub_readme:
-    machine:
-      image: ubuntu-2204:2023.04.2
+    executor: machine-executor
     steps:
       - checkout
       - run: |
@@ -146,14 +174,18 @@ jobs:
               peterevans/dockerhub-description:3.4.1
 
   integration_test:
-    machine:
-      image: ubuntu-2204:2023.04.2
+    parameters:
+      command_args:
+        type: string
+      runner:
+        type: executor
+    executor: << parameters.runner >>
     steps:
       - checkout
       - attach_workspace:
           at: ~/ldap-search-api
       - run: |
-          make integration-test remote-integration-test
+          make integration-test remote-integration-test << parameters.command_args >>
       - store_test_results:
           path: build/test-results
 
@@ -167,11 +199,15 @@ jobs:
       - run: |
           TAG=${CIRCLE_TAG#v}
           DEV_TAG=${CIRCLE_SHA1:0:8}
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker buildx create --name rockbuilder \
-            --driver docker-container --use --bootstrap
-          docker buildx imagetools create \
-            -t devatherock/ldap-search-api:$TAG devatherock/ldap-search-api:$DEV_TAG
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker pull devatherock/ldap-search-api:$DEV_TAG
+          docker tag devatherock/ldap-search-api:$DEV_TAG devatherock/ldap-search-api:$TAG
+          docker tag devatherock/ldap-search-api:$DEV_TAG devatherock/ldap-search-api:${TAG}-amd64
+          docker pull devatherock/ldap-search-api:${DEV_TAG}-arm64
+          docker tag devatherock/ldap-search-api:${DEV_TAG}-arm64 devatherock/ldap-search-api:${TAG}-arm64
+          docker push devatherock/ldap-search-api:$TAG
+          docker push devatherock/ldap-search-api:${TAG}-amd64
+          docker push devatherock/ldap-search-api:${TAG}-arm64
 
   notify:
     <<: *slack_image
@@ -205,24 +241,40 @@ workflows:
             - docker-credentials
           requires:
             - build
+      - publish_arm:
+          context:
+            - docker-credentials
+          requires:
+            - build
       - dockerhub_readme:
           context:
             - docker-credentials
             - dockerhub-readme-credentials
           requires:
-            - publish
+            - publish_arm
       - integration_test:
+          name: integration_test_amd
           context:
             - docker-credentials
-            - jumpcloud-credentials
+          runner: machine-executor
+          command_args: ''
           requires:
-            - dockerhub_readme    
+            - publish
+      - integration_test:
+          name: integration_test_arm
+          context:
+            - docker-credentials
+          runner: arm-executor
+          command_args: 'docker_tag=arm64'
+          requires:
+            - dockerhub_readme
       - notify:
           context:
             - docker-credentials
             - slack-webhook
           requires:
-            - integration_test
+            - integration_test_amd
+            - integration_test_arm
   
   release:
     jobs:

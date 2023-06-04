@@ -1,15 +1,16 @@
-DOCKER_TAG=latest
+docker_tag=latest
 
 clean:
 	./gradlew clean
 integration-test:
-	docker-compose up &
+	DOCKER_TAG=$(docker_tag) docker-compose up &
 	./gradlew integrationTest --tests '*ControllerIntegrationSpec*'
 	docker-compose down
 remote-integration-test:
-	docker-compose -f docker-compose-remote.yml up &
+	DOCKER_TAG=$(docker_tag) docker-compose -f docker-compose-remote.yml up &
 	./gradlew integrationTest --tests '*RemoteUrlsIntegrationSpec*'
 	docker-compose down
+build:
+	./gradlew build	-Dgraalvm=true
 docker-build:
-	./gradlew clean build -Dgraalvm=true
-	docker build -t devatherock/ldap-search-api:$(DOCKER_TAG) .
+	docker build -t devatherock/ldap-search-api:$(docker_tag) .

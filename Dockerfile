@@ -1,4 +1,18 @@
-FROM eclipse-temurin:17.0.7_7-jre-ubi9-minimal
-COPY build/libs/ldap-search-api-*-all.jar ldap-search-api.jar
+FROM ghcr.io/graalvm/native-image:ol8-java17-22.1.0 as graalvm
+
+COPY . /home/app/micronaut-graal-app
+WORKDIR /home/app/micronaut-graal-app
+
+RUN native-image -cp build/libs/*-all.jar
+
+
+
+FROM gcr.io/distroless/base-debian11:latest
+
+LABEL maintainer="devatherock@gmail.com"
+LABEL io.github.devatherock.version="2.0.0"
+
 EXPOSE 8080
-CMD java -Dcom.sun.management.jmxremote ${JAVA_OPTS} -jar ldap-search-api.jar
+
+COPY --from=graalvm /home/app/micronaut-graal-app/micronautgraalapp /micronaut-graal-app/micronautgraalapp
+ENTRYPOINT ["/micronaut-graal-app/micronautgraalapp"]

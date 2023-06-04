@@ -9,4 +9,4 @@ services:
       LDAP_USERNAME: cn=Directory Manager
       LDAP_PASSWORD: testpwd
       JACKSON_SERIALIZATION_INDENT_OUTPUT: 'true'
-      JAVA_OPTS: '-Xmx640m'
+      LOGBACK_CONFIGURATION_FILE: logback-json.xml

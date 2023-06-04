@@ -9,4 +9,4 @@ services:
       LDAP_USERNAME: $JUMPCLOUD_USERNAME
       LDAP_PASSWORD: $JUMPCLOUD_PASSWORD
       LDAP_BASE_DN: $JUMPCLOUD_BASE_DN
-      JAVA_OPTS: '-Xmx640m'
+      LOGBACK_CONFIGURATION_FILE: 'https://raw.githubusercontent.com/devatherock/artifactory-badge/master/src/main/resources/logback.xml'
