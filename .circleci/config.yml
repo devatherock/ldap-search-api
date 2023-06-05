@@ -298,11 +298,21 @@ workflows:
 
   pr_check:
     jobs:
-      - integration_test:
-          name: integration_test_arm
+      - changelog_updater:
           context:
             - docker-credentials
-            - jumpcloud-credentials
-          runner: arm-executor
-          command_args: 'docker_tag=arm64'
+            - changelog-updater-credentials
           <<: *pr_filter
+      - validate_yamls:
+          context:
+            - docker-credentials
+          requires:
+            - changelog_updater
+      - test:
+          context:
+            - docker-credentials
+            - sonar-credentials
+            - jumpcloud-credentials
+          <<: *pr_filter
+          requires:
+            - validate_yamls
