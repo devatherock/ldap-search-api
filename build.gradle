@@ -97,3 +97,11 @@ ext.jacoco = [
 
 apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/integration.gradle'
 apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/checks.gradle'
+
+dependencyCheck {
+  analyzers {
+    ossIndex {
+      enabled = false
+    }
+  }
+}
