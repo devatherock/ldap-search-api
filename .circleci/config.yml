@@ -123,10 +123,6 @@ jobs:
           root: ~/ldap-search-api
           paths:
             - build
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-dependencies-{{ checksum "build.gradle" }}
       - store_test_results:
           path: build/test-results
           
@@ -190,6 +186,10 @@ jobs:
             - v1-dependencies
       - run: |
           make integration-test remote-integration-test << parameters.command_args >>
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}    
       - store_test_results:
           path: build/test-results
 
