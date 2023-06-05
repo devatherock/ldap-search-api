@@ -118,7 +118,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew build coveralls sonarqube -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew build coveralls sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
       - persist_to_workspace:
           root: ~/ldap-search-api
           paths:
