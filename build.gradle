@@ -1,8 +1,7 @@
 plugins {
-    id("groovy")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    // 3.x version doesn't trigger the generateResourceConfigFile task
-    id("io.micronaut.application") version "2.0.8"
+    id 'groovy'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'io.micronaut.application' version '3.7.9'
     id 'jacoco'
     id 'org.sonarqube' version '4.2.0.3129'
     id 'com.github.kt3k.coveralls' version '2.12.2'
@@ -10,18 +9,18 @@ plugins {
     id 'org.owasp.dependencycheck' version '8.2.1'
 }
 
-version = "2.0.0"
-group = "io.github.devatherock"
+version = '2.0.0'
+group = 'io.github.devatherock'
 
 repositories {
     mavenCentral()
 }
 
 micronaut {
-    runtime("netty")
+    runtime('netty')
     processing {
         incremental(true)
-        annotations("io.github.devatherock.ldapsearch.*")
+        annotations('io.github.devatherock.ldapsearch.*')
     }
 }
 
@@ -70,6 +69,9 @@ test {
         jvmArgs("-agentlib:native-image-agent=access-filter-file=$projectDir/src/main/resources/graal/access-filter.json,config-output-dir=$projectDir/build/graal")
     }
 }
+
+// Generates resource-config.json file for graalvm
+build.dependsOn(generateResourcesConfigFile)
 
 tasks.withType(Test) {
     useJUnitPlatform()
