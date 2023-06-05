@@ -98,12 +98,12 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/ldap-search-api
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies
       - run: |
           ./gradlew check sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}    
       - store_test_results:
           path: build/test-results
 
