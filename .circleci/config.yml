@@ -180,10 +180,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/ldap-search-api
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            - v1-dependencies
       - run: |
           make integration-test remote-integration-test << parameters.command_args >>
       - save_cache:
