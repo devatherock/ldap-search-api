@@ -184,8 +184,16 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/ldap-search-api
+      - restore_cache:
+          keys:
+            - v1-integration-{{ checksum "build.gradle" }}
+            - v1-integration
       - run: |
           make integration-test remote-integration-test << parameters.command_args >>
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-integration-{{ checksum "build.gradle" }}
       - store_test_results:
           path: build/test-results
 

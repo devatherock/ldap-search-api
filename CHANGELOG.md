@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 ### Changed
+- Upgraded micronaut application plugin to `3.7.9`
+- Specified all generated json config files except `serialization-config.json` to the `native-image` command
+- Used cache for integration tests
+
+## [2.0.0] - 2023-06-04
+### Changed
 - chore(deps): update plugin org.sonarqube to v4.2.0.3129
 - chore(deps): update dependency gradle to v8
 - [#24](https://github.com/devatherock/ldap-search-api/issues/24): Built a native binary using graalvm
