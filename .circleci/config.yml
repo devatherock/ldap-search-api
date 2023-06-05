@@ -184,6 +184,10 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/ldap-search-api
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies
       - run: |
           make integration-test remote-integration-test << parameters.command_args >>
       - store_test_results:
@@ -294,21 +298,11 @@ workflows:
 
   pr_check:
     jobs:
-      - changelog_updater:
+      - integration_test:
+          name: integration_test_arm
           context:
             - docker-credentials
-            - changelog-updater-credentials
-          <<: *pr_filter
-      - validate_yamls:
-          context:
-            - docker-credentials
-          requires:
-            - changelog_updater
-      - test:
-          context:
-            - docker-credentials
-            - sonar-credentials
             - jumpcloud-credentials
+          runner: arm-executor
+          command_args: 'docker_tag=arm64'
           <<: *pr_filter
-          requires:
-            - validate_yamls
