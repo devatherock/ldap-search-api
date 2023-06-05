@@ -99,9 +99,9 @@ apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/maste
 apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/checks.gradle'
 
 dependencyCheck {
-  analyzers {
-    ossIndex {
-      enabled = false
+    analyzers {
+        ossIndex {
+            enabled = false
+        }
     }
-  }
 }
