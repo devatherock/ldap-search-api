@@ -5,6 +5,7 @@
 - Upgraded micronaut application plugin to `3.7.9`
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - Used cache for integration tests
+- chore(deps): update plugin io.micronaut.application to v3.7.10
 
 ## [2.0.0] - 2023-06-04
 ### Changed
