@@ -6,6 +6,7 @@
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - Used cache for integration tests
 - chore(deps): update plugin io.micronaut.application to v3.7.10
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.9
 
 ## [2.0.0] - 2023-06-04
 ### Changed
