@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/native-image:ol8-java17-22.1.0 as graalvm
+FROM ghcr.io/graalvm/native-image:ol8-java17-22.3.2 as graalvm
 
 COPY . /home/app/micronaut-graal-app
 WORKDIR /home/app/micronaut-graal-app
