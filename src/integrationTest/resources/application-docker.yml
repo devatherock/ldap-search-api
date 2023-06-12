@@ -1,0 +1,7 @@
+ldap:
+  host: ldap://localhost:33389
+  username: cn=Directory Manager
+  password: testpwd
+jackson:
+  serialization:
+    INDENT_OUTPUT: true

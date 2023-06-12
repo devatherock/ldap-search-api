@@ -4,9 +4,24 @@ services:
   ldap-search-api:
     image: devatherock/ldap-search-api:${DOCKER_TAG:-latest}
     network_mode: "host"
+    volumes:
+      - ./src/integrationTest/resources/application-docker.yml:/config/application.yml
     environment:
-      LDAP_HOST: ldap://localhost:33389
-      LDAP_USERNAME: cn=Directory Manager
-      LDAP_PASSWORD: testpwd
-      JACKSON_SERIALIZATION_INDENT_OUTPUT: 'true'
       LOGBACK_CONFIGURATION_FILE: logback-json.xml
+      MICRONAUT_CONFIG_FILES: '/config/application.yml'
+
+  health:
+    image: alpine:3.20.3
+    network_mode: "host"
+    depends_on:
+      - ldap-search-api
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/health"]
+      interval: 2s
+      timeout: 60s
+      retries: 30
+    command: |
+      sh -c '
+        wget -q -O - http://localhost:8080/health
+        sleep 120
+      '

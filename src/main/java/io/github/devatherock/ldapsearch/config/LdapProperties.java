@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Context;
+import io.micronaut.core.annotation.Introspected;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -72,6 +73,7 @@ public class LdapProperties {
      */
     @Getter
     @Setter
+    @Introspected
     @ConfigurationProperties("connection-pool")
     public static class LdapConnectionPoolProperties {
         /**

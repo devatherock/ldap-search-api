@@ -2,21 +2,16 @@
 
 ## [Unreleased]
 ### Changed
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.15
 - fix(deps): update dependency org.objenesis:objenesis to v3.4
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.16
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.17
-- chore(deps): update dependency gradle to v8.8
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.1
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.34
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.22
 - chore(deps): update plugin org.sonarqube to v5.1.0.4882
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.18
-- chore(deps): update dependency gradle to v8.9
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v8
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.8
 - chore(deps): update dependency gradle to v8.10.1
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.1
+- Upgraded graal version from 22.1.0 to 23
 
 ## [2.1.0] - 2024-05-04
 ### Added

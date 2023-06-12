@@ -1,16 +1,17 @@
-FROM ghcr.io/graalvm/native-image:ol8-java17-22.1.0 as graalvm
+FROM ghcr.io/graalvm/native-image-community:17-ol8 as graalvm
 
 COPY . /home/app/micronaut-graal-app
 WORKDIR /home/app/micronaut-graal-app
 
-RUN native-image -cp build/libs/*-all.jar
+ARG QUICK_BUILD
+RUN native-image --verbose ${QUICK_BUILD} -cp build/libs/*-all.jar
 
 
 
 FROM gcr.io/distroless/base-debian11:latest
 
 LABEL maintainer="devatherock@gmail.com"
-LABEL io.github.devatherock.version="2.0.0"
+LABEL io.github.devatherock.version="2.2.0"
 
 EXPOSE 8080
 

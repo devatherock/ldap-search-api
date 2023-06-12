@@ -40,9 +40,7 @@ parameters:
   
 executors:
   jdk-executor:
-    docker:
-      - image: devatherock/graalvm:ol8-java17-22.1.0-5
-        <<: *docker_auth
+    <<: *docker_executor_image
     <<: *resource_class
     <<: *work_directory
     environment:
@@ -82,7 +80,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew check sonar -Dsonar.token=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew check sonar -Dsonar.token=$SONAR_TOKEN
       - store_artifacts:
           path: build/reports
       - store_test_results:
@@ -99,7 +97,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew build coveralls sonar -Dsonar.token=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew build coveralls sonar -Dsonar.token=$SONAR_TOKEN
       - persist_to_workspace:
           root: ~/ldap-search-api
           paths:
