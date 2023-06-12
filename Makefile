@@ -12,5 +12,7 @@ remote-integration-test:
 	docker-compose down
 build:
 	./gradlew build	-Dgraalvm=true
+fast-build:
+	./gradlew build shadowJar -Dgraalvm=true -x assemble -x dependencyCheckAggregate
 docker-build:
 	docker build -t devatherock/ldap-search-api:$(docker_tag) .
