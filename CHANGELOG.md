@@ -8,6 +8,7 @@
 - chore(deps): update plugin io.micronaut.application to v3.7.10
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.9
 - chore(deps): update plugin org.sonarqube to v4.2.1.3168
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.8
 
 ## [2.0.0] - 2023-06-04
 ### Changed
