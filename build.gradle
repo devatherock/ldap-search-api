@@ -52,7 +52,7 @@ dependencies {
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '6.0.9'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
     testImplementation group: 'ch.qos.logback', name: 'logback-classic'
-    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '3.0.17'
+    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '3.0.18'
 }
 
 application {
