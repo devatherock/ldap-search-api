@@ -12,6 +12,7 @@
 - chore(deps): update devatherock/simple-slack docker tag to v1
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.4
 - chore(deps): update plugin org.owasp.dependencycheck to v8.3.1
+- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.18
 
 ## [2.0.0] - 2023-06-04
 ### Changed
