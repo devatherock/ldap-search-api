@@ -2,7 +2,6 @@
 
 ## [Unreleased]
 ### Changed
-- Upgraded micronaut application plugin to `3.7.9`
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - Used cache for integration tests
 - chore(deps): update plugin io.micronaut.application to v3.7.10
@@ -13,6 +12,7 @@
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.4
 - chore(deps): update plugin org.owasp.dependencycheck to v8.3.1
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.18
+- Upgraded gradle to `8.2`
 
 ## [2.0.0] - 2023-06-04
 ### Changed
