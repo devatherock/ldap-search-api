@@ -46,7 +46,7 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:1.4.8"
 
     testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
-    testImplementation group: 'cglib', name: 'cglib-nodep', version: '3.3.0'
+    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.14.5'
     testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.3'
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '6.0.9'
@@ -65,8 +65,10 @@ java {
 }
 
 test {
-    if (Boolean.getBoolean('graalvm')) {
-        jvmArgs("-agentlib:native-image-agent=access-filter-file=$projectDir/src/main/resources/graal/access-filter.json,config-output-dir=$projectDir/build/graal")
+    doFirst {
+        if (Boolean.getBoolean('graalvm')) {
+            jvmArgs("-agentlib:native-image-agent=access-filter-file=$projectDir/src/main/resources/graal/access-filter.json,config-output-dir=$projectDir/build/graal")
+        }
     }
 }
 
