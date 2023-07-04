@@ -33,7 +33,7 @@ pr_filter: &pr_filter
 executors:
   jdk-executor:
     docker:
-      - image: devatherock/graalvm:ol8-java17-22.1.0-1
+      - image: devatherock/graalvm:ol8-java17-22.1.0-5
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD

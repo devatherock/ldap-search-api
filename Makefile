@@ -1,7 +1,9 @@
 docker_tag=latest
 
 clean:
-	./gradlew clean
+	rm -rf build
+check:
+	./gradlew check -Dgraalvm=true $(additional_gradle_args)
 integration-test:
 	DOCKER_TAG=$(docker_tag) docker-compose up &
 	./gradlew integrationTest --tests '*ControllerIntegrationSpec*'
