@@ -1,16 +1,17 @@
+docker_auth: &docker_auth
+  auth:
+    username: $DOCKER_USERNAME
+    password: $DOCKER_PASSWORD
+
 slack_image: &slack_image
   docker:
     - image: devatherock/simple-slack:1.0.0
-      auth:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
+      <<: *docker_auth
         
 docker_executor_image: &docker_executor_image
   docker:
     - image: cimg/openjdk:17.0
-      auth:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
+      <<: *docker_auth
 
 work_directory: &work_directory
   working_directory: ~/ldap-search-api
@@ -34,9 +35,7 @@ executors:
   jdk-executor:
     docker:
       - image: devatherock/graalvm:ol8-java17-22.1.0-5
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+        <<: *docker_auth
     <<: *resource_class
     <<: *work_directory
     environment:
@@ -66,9 +65,7 @@ jobs:
   changelog_updater:
     docker:
     - image: devatherock/changelog-updater:latest
-      auth:
-        username: $DOCKER_USERNAME
-        password: $DOCKER_PASSWORD
+      <<: *docker_auth
     <<: *resource_class
     environment:
       VELA_BUILD_AUTHOR: "renovate[bot]"
@@ -83,9 +80,7 @@ jobs:
   validate_yamls:
     docker:
       - image: devatherock/drone-yaml-validator:3.0.0
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+        <<: *docker_auth
     <<: *resource_class
     <<: *work_directory
     steps:
@@ -104,6 +99,8 @@ jobs:
             - v1-dependencies
       - run: |
           ./gradlew check sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+      - store_artifacts:
+          path: build/reports
       - store_test_results:
           path: build/test-results
 
@@ -127,6 +124,8 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
+      - store_artifacts:
+          path: build/reports
       - store_test_results:
           path: build/test-results
           
@@ -159,19 +158,23 @@ jobs:
             -t devatherock/ldap-search-api:$TAG \
             -t devatherock/ldap-search-api:arm64 .
           docker image push --all-tags devatherock/ldap-search-api
-          
+
   dockerhub_readme:
-    executor: machine-executor
+    docker:
+      - image: peterevans/dockerhub-description:3.4.2
+        <<: *docker_auth
+    <<: *resource_class
+    <<: *work_directory
+    environment:
+      DOCKERHUB_REPOSITORY: 'devatherock/ldap-search-api'
+      SHORT_DESCRIPTION: 'Simple REST API to query a LDAP server'
+      README_FILEPATH: README.md
     steps:
       - checkout
+      - attach_workspace:
+          at: ~/ldap-search-api
       - run: |
-          docker run -v $PWD:/workspace \
-              -e DOCKERHUB_USERNAME \
-              -e DOCKERHUB_PASSWORD \
-              -e DOCKERHUB_REPOSITORY='devatherock/ldap-search-api' \
-              -e SHORT_DESCRIPTION='Simple REST API to query a LDAP server' \
-              -e README_FILEPATH='/workspace/README.md' \
-              peterevans/dockerhub-description:3.4.1
+          sh /entrypoint.sh
 
   integration_test:
     parameters:
