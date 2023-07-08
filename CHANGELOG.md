@@ -3,7 +3,6 @@
 ## [Unreleased]
 ### Changed
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
-- Used cache for integration tests
 - chore(deps): update plugin io.micronaut.application to v3.7.10
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.9
 - chore(deps): update plugin org.sonarqube to v4.2.1.3168
