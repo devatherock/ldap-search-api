@@ -82,7 +82,7 @@ jobs:
       
   validate_yamls:
     docker:
-      - image: devatherock/drone-yaml-validator:2.1.0
+      - image: devatherock/drone-yaml-validator:3.0.0
         auth:
           username: $DOCKER_USERNAME
           password: $DOCKER_PASSWORD
