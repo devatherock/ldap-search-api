@@ -14,6 +14,7 @@
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.18
 - Upgraded gradle to `8.2`
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.10
+- chore(deps): update devatherock/drone-yaml-validator docker tag to v3
 
 ## [2.0.0] - 2023-06-04
 ### Changed
