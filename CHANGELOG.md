@@ -14,6 +14,7 @@
 - Upgraded gradle to `8.2`
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.10
 - chore(deps): update devatherock/drone-yaml-validator docker tag to v3
+- chore(deps): update dependency gradle to v8.2.1
 
 ## [2.0.0] - 2023-06-04
 ### Changed
