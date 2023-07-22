@@ -16,6 +16,7 @@
 - chore(deps): update devatherock/drone-yaml-validator docker tag to v3
 - chore(deps): update dependency gradle to v8.2.1
 - chore(deps): update plugin com.diffplug.spotless to v6.20.0
+- chore(deps): update plugin org.sonarqube to v4.3.0.3225
 
 ## [2.0.0] - 2023-06-04
 ### Changed
