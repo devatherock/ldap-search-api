@@ -20,6 +20,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.9
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.11
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.6
+- chore(deps): update dependency gradle to v8.3
 
 ## [2.0.0] - 2023-06-04
 ### Changed
