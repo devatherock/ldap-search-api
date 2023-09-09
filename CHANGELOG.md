@@ -23,6 +23,7 @@
 - chore(deps): update dependency gradle to v8.3
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.19
 - chore(deps): update plugin org.sonarqube to v4.3.1.3277
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.7
 
 ## [2.0.0] - 2023-06-04
 ### Changed
