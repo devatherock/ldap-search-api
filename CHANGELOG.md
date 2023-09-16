@@ -25,6 +25,7 @@
 - chore(deps): update plugin org.sonarqube to v4.3.1.3277
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.7
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.8
+- chore(deps): update plugin com.diffplug.spotless to v6.21.0
 
 ## [2.0.0] - 2023-06-04
 ### Changed
