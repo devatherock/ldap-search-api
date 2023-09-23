@@ -27,6 +27,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.8
 - chore(deps): update plugin com.diffplug.spotless to v6.21.0
 - chore(deps): update plugin org.owasp.dependencycheck to v8.4.0
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.10
 
 ## [2.0.0] - 2023-06-04
 ### Changed
