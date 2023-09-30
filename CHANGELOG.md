@@ -28,6 +28,7 @@
 - chore(deps): update plugin com.diffplug.spotless to v6.21.0
 - chore(deps): update plugin org.owasp.dependencycheck to v8.4.0
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.10
+- fix(deps): update dependency org.projectlombok:lombok to v1.18.30
 
 ## [2.0.0] - 2023-06-04
 ### Changed
