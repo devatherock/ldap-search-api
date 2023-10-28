@@ -1,7 +1,5 @@
 package io.github.devatherock.ldapsearch.controllers
 
-import javax.inject.Inject
-
 import groovy.json.JsonSlurper
 
 import com.unboundid.ldap.listener.InMemoryDirectoryServer
@@ -12,6 +10,7 @@ import io.micronaut.http.client.HttpClient
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.http.uri.UriBuilder
+import jakarta.inject.Inject
 import spock.lang.Shared
 import spock.lang.Specification
 

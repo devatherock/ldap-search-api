@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Singleton;
 import javax.naming.Context;
 import javax.naming.NameNotFoundException;
 import javax.naming.NamingEnumeration;
@@ -21,6 +20,7 @@ import javax.naming.ldap.LdapContext;
 import io.github.devatherock.ldapsearch.config.LdapProperties;
 
 import io.micronaut.core.util.CollectionUtils;
+import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

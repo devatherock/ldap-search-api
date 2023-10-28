@@ -1,7 +1,7 @@
 plugins {
     id 'groovy'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
-    id 'io.micronaut.application' version '3.7.10'
+    id 'io.micronaut.application' version '4.1.2'
     id 'jacoco'
     id 'org.sonarqube' version '4.3.1.3277'
     id 'com.github.kt3k.coveralls' version '2.12.2'
@@ -29,30 +29,33 @@ dependencies {
 
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     compileOnly group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.1'
     compileOnly("org.graalvm.nativeimage:svm")
 
-    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut.validation:micronaut-validation")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.micronaut:micronaut-management")
     implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+    implementation("io.micronaut:micronaut-jackson-databind")
 
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
     implementation group: 'org.codehaus.janino', name: 'janino', version: '3.1.10'
-    implementation group: 'javax.inject', name: 'javax.inject', version: '1'
     implementation "ch.qos.logback:logback-classic:1.4.11"
 
-    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
+    runtimeOnly("org.yaml:snakeyaml")
+
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-4.0'
     testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.14.9'
     testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.3'
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '6.0.10'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
     testImplementation group: 'ch.qos.logback', name: 'logback-classic'
-    testImplementation group: 'org.codehaus.groovy', name: 'groovy-json', version: '3.0.19'
+    testImplementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.15'
 }
 
 application {
@@ -60,8 +63,8 @@ application {
 }
 
 java {
-    sourceCompatibility = JavaVersion.toVersion("1.8")
-    targetCompatibility = JavaVersion.toVersion("1.8")
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
 }
 
 test {
