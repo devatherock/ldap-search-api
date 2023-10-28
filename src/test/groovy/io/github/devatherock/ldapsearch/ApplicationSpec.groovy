@@ -1,9 +1,8 @@
 package io.github.devatherock.ldapsearch
 
-import javax.inject.Inject
-
 import io.micronaut.runtime.EmbeddedApplication
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
+import jakarta.inject.Inject
 import spock.lang.Specification
 
 @MicronautTest(propertySources = 'classpath:application-test.yml')

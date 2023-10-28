@@ -3,6 +3,7 @@ services:
 
   ldap-search-api:
     image: devatherock/ldap-search-api:${DOCKER_TAG:-latest}
+    container_name: ldap-search-api-intg
     network_mode: "host"
     volumes:
       - ./src/integrationTest/resources/application-docker.yml:/config/application.yml

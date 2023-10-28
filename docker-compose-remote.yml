@@ -3,13 +3,14 @@ services:
 
   ldap-search-api:
     image: devatherock/ldap-search-api:${DOCKER_TAG:-latest}
+    container_name: ldap-search-api-intg-remote
     network_mode: "host"
     environment:
       LDAP_HOST: ldaps://ldap.jumpcloud.com:636
       LDAP_USERNAME: $JUMPCLOUD_USERNAME
       LDAP_PASSWORD: $JUMPCLOUD_PASSWORD
       LDAP_BASE_DN: $JUMPCLOUD_BASE_DN
-      LOGBACK_CONFIGURATION_FILE: 'https://raw.githubusercontent.com/devatherock/artifactory-badge/master/src/main/resources/logback.xml'
+      LOGBACK_CONFIGURATION_FILE: 'https://raw.githubusercontent.com/devatherock/ldap-search-api/master/src/main/resources/logback.xml'
 
   health:
     image: alpine:3.20.3
