@@ -4,31 +4,22 @@
 ### Changed
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - chore(deps): update plugin io.micronaut.application to v3.7.10
-- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.9
-- chore(deps): update plugin org.sonarqube to v4.2.1.3168
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.8
 - chore(deps): update devatherock/simple-slack docker tag to v1
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.4
-- chore(deps): update plugin org.owasp.dependencycheck to v8.3.1
-- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.18
 - Upgraded gradle to `8.2`
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.10
 - chore(deps): update devatherock/drone-yaml-validator docker tag to v3
 - chore(deps): update dependency gradle to v8.2.1
-- chore(deps): update plugin com.diffplug.spotless to v6.20.0
-- chore(deps): update plugin org.sonarqube to v4.3.0.3225
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.9
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.11
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.6
 - chore(deps): update dependency gradle to v8.3
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.19
 - chore(deps): update plugin org.sonarqube to v4.3.1.3277
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.7
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.8
 - chore(deps): update plugin com.diffplug.spotless to v6.21.0
 - chore(deps): update plugin org.owasp.dependencycheck to v8.4.0
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.10
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.30
+- Made the `gradle-includes` location configurable
 
 ## [2.0.0] - 2023-06-04
 ### Changed

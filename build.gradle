@@ -97,5 +97,16 @@ ext.jacoco = [
     ]
 ]
 
-apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/integration.gradle'
-apply from: 'https://raw.githubusercontent.com/devatherock/gradle-includes/master/checks.gradle'
+apply from: "${getPropertyValue('gradle.includes.location', 'https://raw.githubusercontent.com/devatherock/gradle-includes/master')}/integration.gradle"
+apply from: "${getPropertyValue('gradle.includes.location', 'https://raw.githubusercontent.com/devatherock/gradle-includes/master')}/checks.gradle"
+
+/**
+ * Fetches the value of a gradle property
+ *
+ * @param propertyName
+ * @param propertyValueDefault
+ * @return the property value
+ */
+String getPropertyValue(String propertyName, String propertyValueDefault = null) {
+    return project.hasProperty(propertyName) ? project[propertyName] : propertyValueDefault
+}
