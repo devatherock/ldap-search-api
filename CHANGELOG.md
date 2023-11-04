@@ -25,6 +25,7 @@
 - chore(deps): update dependency gradle to v8.4
 - chore(deps): update plugin com.diffplug.spotless to v6.22.0
 - chore(deps): update plugin org.sonarqube to v4.4.1.3373
+- chore(deps): update cimg/openjdk docker tag to v21
 
 ## [2.0.0] - 2023-06-04
 ### Changed
