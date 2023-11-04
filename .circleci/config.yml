@@ -10,7 +10,7 @@ slack_image: &slack_image
         
 docker_executor_image: &docker_executor_image
   docker:
-    - image: cimg/openjdk:17.0
+    - image: cimg/openjdk:21.0
       <<: *docker_auth
 
 work_directory: &work_directory
