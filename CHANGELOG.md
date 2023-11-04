@@ -22,6 +22,7 @@
 - Made the `gradle-includes` location configurable
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.9
 - chore(deps): update plugin org.owasp.dependencycheck to v8.4.2
+- chore(deps): update dependency gradle to v8.4
 
 ## [2.0.0] - 2023-06-04
 ### Changed
