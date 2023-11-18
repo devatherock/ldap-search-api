@@ -6,7 +6,7 @@ plugins {
     id 'org.sonarqube' version '4.4.1.3373'
     id 'com.github.kt3k.coveralls' version '2.12.2'
     id 'com.diffplug.spotless' version '6.22.0'
-    id 'org.owasp.dependencycheck' version '8.4.2'
+    id 'org.owasp.dependencycheck' version '8.4.3'
 }
 
 version = '2.0.0'
