@@ -245,6 +245,7 @@ workflows:
             - docker-credentials
             - sonar-credentials
             - jumpcloud-credentials
+            - dependencycheck-credentials
           requires:
             - validate_yamls
       - publish:
@@ -320,6 +321,7 @@ workflows:
             - docker-credentials
             - sonar-credentials
             - jumpcloud-credentials
+            - dependencycheck-credentials
           <<: *pr_filter
           requires:
             - validate_yamls
