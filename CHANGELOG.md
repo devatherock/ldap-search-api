@@ -28,6 +28,7 @@
 - chore(deps): update plugin org.owasp.dependencycheck to v8.4.3
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.10
 - chore(deps): update plugin org.owasp.dependencycheck to v9
+- Configure Mend Bolt for GitHub
 
 ## [2.0.0] - 2023-06-04
 ### Changed
