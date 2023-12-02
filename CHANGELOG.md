@@ -33,6 +33,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.14
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.11
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.11
+- chore(deps): update dependency gradle to v8.5
 
 ## [2.0.0] - 2023-06-04
 ### Changed
