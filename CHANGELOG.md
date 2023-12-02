@@ -31,6 +31,7 @@
 - Configure Mend Bolt for GitHub
 - chore(deps): update plugin org.owasp.dependencycheck to v9.0.2
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.14
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.11
 
 ## [2.0.0] - 2023-06-04
 ### Changed
