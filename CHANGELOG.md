@@ -34,6 +34,7 @@
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.11
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.11
 - chore(deps): update dependency gradle to v8.5
+- chore(deps): update plugin com.diffplug.spotless to v6.23.2
 
 ## [2.0.0] - 2023-06-04
 ### Changed
