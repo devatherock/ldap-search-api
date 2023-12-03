@@ -12,7 +12,7 @@ remote-integration-test:
 	DOCKER_TAG=$(docker_tag) docker-compose -f docker-compose-remote.yml up &
 	./gradlew integrationTest --tests '*RemoteUrlsIntegrationSpec*'
 	docker-compose down
-build:
+build-all:
 	./gradlew build	-Dgraalvm=true
 fast-build:
 	./gradlew build shadowJar -Dgraalvm=true -x assemble -x dependencyCheckAggregate
