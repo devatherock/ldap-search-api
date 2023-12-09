@@ -21,6 +21,7 @@
 - chore(deps): update dependency gradle to v8.5
 - chore(deps): update plugin com.diffplug.spotless to v6.23.2
 - Upgraded micronaut to `3.10.3`
+- chore(deps): update plugin com.diffplug.spotless to v6.23.3
 
 ### Removed
 - Dependency check plugin
