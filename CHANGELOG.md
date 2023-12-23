@@ -22,6 +22,7 @@
 - chore(deps): update plugin com.diffplug.spotless to v6.23.2
 - Upgraded micronaut to `3.10.3`
 - chore(deps): update plugin com.diffplug.spotless to v6.23.3
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.11
 
 ### Removed
 - Dependency check plugin
