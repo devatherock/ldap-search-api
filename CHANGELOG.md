@@ -23,6 +23,7 @@
 - Upgraded micronaut to `3.10.3`
 - chore(deps): update plugin com.diffplug.spotless to v6.23.3
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.11
+- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
 
 ### Removed
 - Dependency check plugin
