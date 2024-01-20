@@ -24,6 +24,7 @@
 - chore(deps): update plugin com.diffplug.spotless to v6.23.3
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.11
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
+- chore(deps): update plugin com.diffplug.spotless to v6.24.0
 
 ### Removed
 - Dependency check plugin
