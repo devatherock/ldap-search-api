@@ -5,7 +5,7 @@ plugins {
     id 'jacoco'
     id 'org.sonarqube' version '4.4.1.3373'
     id 'com.github.kt3k.coveralls' version '2.12.2'
-    id 'com.diffplug.spotless' version '6.24.0'
+    id 'com.diffplug.spotless' version '6.25.0'
 }
 
 version = '2.0.0'
