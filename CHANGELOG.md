@@ -26,6 +26,7 @@
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
 - chore(deps): update plugin com.diffplug.spotless to v6.24.0
 - chore(deps): update plugin com.diffplug.spotless to v6.25.0
+- chore(deps): update peterevans/dockerhub-description docker tag to v4
 
 ### Removed
 - Dependency check plugin
