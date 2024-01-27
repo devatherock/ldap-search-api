@@ -161,7 +161,7 @@ jobs:
 
   dockerhub_readme:
     docker:
-      - image: peterevans/dockerhub-description:3.4.2
+      - image: peterevans/dockerhub-description:4.0.0
         <<: *docker_auth
     <<: *resource_class
     <<: *work_directory
