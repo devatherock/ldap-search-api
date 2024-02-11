@@ -21,6 +21,7 @@
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
 - chore(deps): update plugin com.diffplug.spotless to v6.25.0
 - chore(deps): update cimg/openjdk docker tag to v17.0.10
+- fix(deps): update dependency org.codehaus.janino:janino to v3.1.12
 
 ### Removed
 - Dependency check plugin
