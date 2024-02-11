@@ -2,16 +2,15 @@ docker_auth: &docker_auth
   auth:
     username: $DOCKER_USERNAME
     password: $DOCKER_PASSWORD
-
-slack_image: &slack_image
-  docker:
-    - image: devatherock/simple-slack:1.0.0
-      <<: *docker_auth
         
 docker_executor_image: &docker_executor_image
   docker:
     - image: cimg/openjdk:17.0
       <<: *docker_auth
+
+vm_executor_image: &vm_executor_image
+  machine:
+    image: ubuntu-2204:2023.04.2
 
 work_directory: &work_directory
   working_directory: ~/ldap-search-api
@@ -30,6 +29,14 @@ pr_filter: &pr_filter
   filters:
     branches:
       ignore: master
+
+orbs:
+  templates: devatherock/circleci-templates@0.5.0
+
+parameters:
+  repo_name:
+    type: string
+    default: "ldap-search-api"        
   
 executors:
   jdk-executor:
@@ -50,43 +57,16 @@ executors:
     resource_class: medium
     <<: *work_directory
   machine-executor:
-    machine:
-      image: ubuntu-2204:2023.04.2
+    <<: *vm_executor_image
     resource_class: medium
     <<: *work_directory
   arm-executor:
-    machine:
-      image: ubuntu-2004:2022.04.1
+    <<: *vm_executor_image
     resource_class: arm.medium
     <<: *work_directory
 
 version: 2.1
 jobs:
-  changelog_updater:
-    docker:
-    - image: devatherock/changelog-updater:latest
-      <<: *docker_auth
-    <<: *resource_class
-    environment:
-      VELA_BUILD_AUTHOR: "renovate[bot]"
-      VELA_BUILD_AUTHOR_EMAIL: "29139614+renovate[bot]@users.noreply.github.com"
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "4a:86:fe:0e:c3:0e:ad:0d:1d:5c:3e:48:cf:28:39:5d"
-      - checkout
-      - run: sh /scripts/entry-point.sh
-      
-  validate_yamls:
-    docker:
-      - image: devatherock/drone-yaml-validator:3.0.0
-        <<: *docker_auth
-    <<: *resource_class
-    <<: *work_directory
-    steps:
-      - checkout
-      - run: sh /scripts/entry-point.sh
-
   test:
     executor: jdk-executor
     steps:
@@ -159,23 +139,6 @@ jobs:
             -t devatherock/ldap-search-api:arm64 .
           docker image push --all-tags devatherock/ldap-search-api
 
-  dockerhub_readme:
-    docker:
-      - image: peterevans/dockerhub-description:3.4.2
-        <<: *docker_auth
-    <<: *resource_class
-    <<: *work_directory
-    environment:
-      DOCKERHUB_REPOSITORY: 'devatherock/ldap-search-api'
-      SHORT_DESCRIPTION: 'Simple REST API to query a LDAP server'
-      README_FILEPATH: README.md
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/ldap-search-api
-      - run: |
-          sh /entrypoint.sh
-
   integration_test:
     parameters:
       command_args:
@@ -220,23 +183,15 @@ jobs:
           docker push devatherock/ldap-search-api:${TAG}-amd64
           docker push devatherock/ldap-search-api:${TAG}-arm64
 
-  notify:
-    <<: *slack_image
-    <<: *resource_class
-    environment:
-      TEXT: "Success: {{.CircleBuildUrl}} by {{.CircleUsername}}"
-      CHANNEL: general
-      TITLE: "Build completed"
-    steps:
-      - run: /bin/simpleslack -c "#33ad7f" || true
-
 workflows:
   version: 2.1
   build_publish:
     jobs:
-      - validate_yamls:
+      - templates/yaml_validator:
+          name: validate_yamls
           context:
             - docker-credentials
+          work_dir: '~/<< pipeline.parameters.repo_name >>'
           filters:
             branches:
               only: master
@@ -258,10 +213,14 @@ workflows:
             - docker-credentials
           requires:
             - build
-      - dockerhub_readme:
+      - templates/dockerhub_readme_update:
+          name: dockerhub_readme
           context:
             - docker-credentials
             - dockerhub-readme-credentials
+          docker_image: '<< pipeline.parameters.repo_name >>'
+          image_description: 'Simple REST API to query a LDAP server'
+          work_dir: '~/<< pipeline.parameters.repo_name >>'
           requires:
             - publish_arm
       - integration_test:
@@ -282,7 +241,8 @@ workflows:
           command_args: 'docker_tag=arm64'
           requires:
             - dockerhub_readme
-      - notify:
+      - templates/slack:
+          name: notify
           context:
             - docker-credentials
             - slack-webhook
@@ -296,7 +256,8 @@ workflows:
           context:
             - docker-credentials
           <<: *release_filter
-      - notify:
+      - templates/slack:
+          name: notify
           context:
             - docker-credentials
             - slack-webhook
@@ -306,14 +267,17 @@ workflows:
 
   pr_check:
     jobs:
-      - changelog_updater:
+      - templates/changelog_updater:
+          name: changelog_updater
           context:
             - docker-credentials
             - changelog-updater-credentials
           <<: *pr_filter
-      - validate_yamls:
+      - templates/yaml_validator:
+          name: validate_yamls
           context:
             - docker-credentials
+          work_dir: '~/<< pipeline.parameters.repo_name >>'            
           requires:
             - changelog_updater
       - test:
