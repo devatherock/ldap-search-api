@@ -1,30 +1,24 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- `circleci-templates` orb for common tasks
+
 ### Changed
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - chore(deps): update plugin io.micronaut.application to v3.7.10
-- chore(deps): update devatherock/simple-slack docker tag to v1
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.4
-- chore(deps): update devatherock/drone-yaml-validator docker tag to v3
-- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.19
-- chore(deps): update plugin org.owasp.dependencycheck to v8.4.0
-- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.10
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.30
 - Made the `gradle-includes` location configurable
 - chore(deps): update plugin org.sonarqube to v4.4.1.3373
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.10
 - Configure Mend Bolt for GitHub
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.14
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.11
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.11
 - chore(deps): update dependency gradle to v8.5
-- chore(deps): update plugin com.diffplug.spotless to v6.23.2
 - Upgraded micronaut to `3.10.3`
-- chore(deps): update plugin com.diffplug.spotless to v6.23.3
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.11
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
-- chore(deps): update plugin com.diffplug.spotless to v6.24.0
 - chore(deps): update plugin com.diffplug.spotless to v6.25.0
 
 ### Removed
