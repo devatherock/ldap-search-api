@@ -24,6 +24,7 @@
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.12
 - chore(deps): update dependency gradle to v8.6
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.12
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.0
 
 ### Removed
 - Dependency check plugin
