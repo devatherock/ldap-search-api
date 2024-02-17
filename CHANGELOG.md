@@ -23,6 +23,7 @@
 - chore(deps): update cimg/openjdk docker tag to v17.0.10
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.12
 - chore(deps): update dependency gradle to v8.6
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.12
 
 ### Removed
 - Dependency check plugin
