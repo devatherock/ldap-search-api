@@ -26,6 +26,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.12
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.0
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.1
+- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.21
 
 ### Removed
 - Dependency check plugin
