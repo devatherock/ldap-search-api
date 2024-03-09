@@ -28,6 +28,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.1
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.21
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.2
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.3
 
 ### Removed
 - Dependency check plugin
