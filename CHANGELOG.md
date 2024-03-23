@@ -30,6 +30,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.2
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.3
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7
+- fix(deps): update dependency org.projectlombok:lombok to v1.18.32
 
 ### Removed
 - Dependency check plugin
