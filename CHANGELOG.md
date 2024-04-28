@@ -37,6 +37,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.5
 - chore(deps): update cimg/openjdk docker tag to v17.0.11
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.6
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.14
 
 ### Removed
 - Dependency check plugin
