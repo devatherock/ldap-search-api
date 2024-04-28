@@ -31,7 +31,7 @@ pr_filter: &pr_filter
       ignore: master
 
 orbs:
-  templates: devatherock/circleci-templates@0.5.0
+  templates: devatherock/circleci-templates@0.6.0
 
 parameters:
   repo_name:
