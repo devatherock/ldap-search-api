@@ -39,6 +39,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.6
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.14
 - chore(deps): update templates orb to v0.6.0
+- chore(deps): update templates orb to v0.7.0
 
 ### Removed
 - Dependency check plugin
