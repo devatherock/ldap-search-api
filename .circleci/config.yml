@@ -31,7 +31,7 @@ pr_filter: &pr_filter
       ignore: master
 
 orbs:
-  templates: devatherock/circleci-templates@0.6.0
+  templates: devatherock/circleci-templates@0.7.0
 
 parameters:
   repo_name:
@@ -56,6 +56,10 @@ executors:
     <<: *docker_executor_image
     resource_class: medium
     <<: *work_directory
+  arm-native-image-executor:
+    <<: *docker_executor_image
+    resource_class: arm.medium
+    <<: *work_directory    
   machine-executor:
     <<: *vm_executor_image
     resource_class: medium
@@ -78,7 +82,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew check sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew check sonar -Dsonar.token=$SONAR_TOKEN -Dgraalvm=true
       - store_artifacts:
           path: build/reports
       - store_test_results:
@@ -95,7 +99,7 @@ jobs:
             - v1-dependencies-{{ checksum "build.gradle" }}
             - v1-dependencies
       - run: |
-          ./gradlew build coveralls sonar -Dsonar.login=$SONAR_TOKEN -Dgraalvm=true
+          ./gradlew build coveralls sonar -Dsonar.token=$SONAR_TOKEN -Dgraalvm=true
       - persist_to_workspace:
           root: ~/ldap-search-api
           paths:
@@ -110,39 +114,27 @@ jobs:
           path: build/test-results
           
   publish:
-    executor: native-image-executor
+    parameters:
+      runner:
+        type: executor
+      tag_suffix:
+        type: string  
+    executor: << parameters.runner >>
     steps:
       - checkout
       - setup_remote_docker
       - attach_workspace:
           at: ~/ldap-search-api
       - run: |
-          TAG=${CIRCLE_SHA1:0:8}
+          TAG=${CIRCLE_SHA1:0:8}-<< parameters.tag_suffix >>
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
           docker build \
             -t devatherock/ldap-search-api:$TAG \
-            -t devatherock/ldap-search-api:latest \
-            -t devatherock/ldap-search-api:amd64 .
-          docker image push --all-tags devatherock/ldap-search-api
-            
-  publish_arm:
-    executor: arm-executor
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/ldap-search-api
-      - run: |
-          TAG=${CIRCLE_SHA1:0:8}-arm64
-          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker build \
-            -t devatherock/ldap-search-api:$TAG \
-            -t devatherock/ldap-search-api:arm64 .
+            -t devatherock/ldap-search-api:<< parameters.tag_suffix >> .
           docker image push --all-tags devatherock/ldap-search-api
 
   integration_test:
     parameters:
-      command_args:
-        type: string
       runner:
         type: executor
     executor: << parameters.runner >>
@@ -155,7 +147,7 @@ jobs:
             - v1-integration-{{ checksum "build.gradle" }}
             - v1-integration
       - run: |
-          make integration-test remote-integration-test << parameters.command_args >>
+          make integration-test remote-integration-test
       - save_cache:
           paths:
             - ~/.gradle
@@ -174,45 +166,61 @@ jobs:
           TAG=${CIRCLE_TAG#v}
           DEV_TAG=${CIRCLE_SHA1:0:8}
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker pull devatherock/ldap-search-api:$DEV_TAG
-          docker tag devatherock/ldap-search-api:$DEV_TAG devatherock/ldap-search-api:$TAG
-          docker tag devatherock/ldap-search-api:$DEV_TAG devatherock/ldap-search-api:${TAG}-amd64
-          docker pull devatherock/ldap-search-api:${DEV_TAG}-arm64
-          docker tag devatherock/ldap-search-api:${DEV_TAG}-arm64 devatherock/ldap-search-api:${TAG}-arm64
-          docker push devatherock/ldap-search-api:$TAG
-          docker push devatherock/ldap-search-api:${TAG}-amd64
-          docker push devatherock/ldap-search-api:${TAG}-arm64
+          docker buildx create --name rockbuilder \
+            --driver docker-container --use --bootstrap
+          docker buildx imagetools create \
+            -t devatherock/<< pipeline.parameters.repo_name >>:$TAG \
+            devatherock/<< pipeline.parameters.repo_name >>:$DEV_TAG
 
 workflows:
   version: 2.1
   build_publish:
     jobs:
+      - templates/slack:
+          name: notify
+          context:
+            - docker-credentials
+            - slack-webhook
+          filters:
+            branches:
+              only: master    
       - templates/yaml_validator:
           name: validate_yamls
           context:
             - docker-credentials
           work_dir: '~/<< pipeline.parameters.repo_name >>'
-          filters:
-            branches:
-              only: master
+          requires:
+            - notify
       - build:
           context:
             - docker-credentials
             - sonar-credentials
             - jumpcloud-credentials
-            - dependencycheck-credentials
           requires:
             - validate_yamls
       - publish:
           context:
             - docker-credentials
+          runner: native-image-executor
+          tag_suffix: amd64
           requires:
             - build
-      - publish_arm:
+      - publish:
+          name: publish_arm
           context:
             - docker-credentials
+          runner: arm-native-image-executor
+          tag_suffix: arm64  
           requires:
             - build
+      - templates/image_merge:
+          name: publish_multi_arch
+          context:
+            - docker-credentials
+          docker_image: '<< pipeline.parameters.repo_name >>'
+          requires:
+            - publish
+            - publish_arm
       - templates/dockerhub_readme_update:
           name: dockerhub_readme
           context:
@@ -222,48 +230,38 @@ workflows:
           image_description: 'Simple REST API to query a LDAP server'
           work_dir: '~/<< pipeline.parameters.repo_name >>'
           requires:
-            - publish_arm
+            - publish_multi_arch
       - integration_test:
           name: integration_test_amd
           context:
             - docker-credentials
             - jumpcloud-credentials
           runner: machine-executor
-          command_args: ''
           requires:
-            - publish
+            - publish_multi_arch
       - integration_test:
           name: integration_test_arm
           context:
             - docker-credentials
             - jumpcloud-credentials
           runner: arm-executor
-          command_args: 'docker_tag=arm64'
           requires:
             - dockerhub_readme
+  
+  release:
+    jobs:
       - templates/slack:
           name: notify
           context:
             - docker-credentials
             - slack-webhook
-          requires:
-            - integration_test_amd
-            - integration_test_arm
-  
-  release:
-    jobs:
+          <<: *release_filter    
       - publish_release:
           context:
             - docker-credentials
           <<: *release_filter
-      - templates/slack:
-          name: notify
-          context:
-            - docker-credentials
-            - slack-webhook
-          <<: *release_filter
           requires:
-            - publish_release
+            - notify
 
   pr_check:
     jobs:
@@ -285,7 +283,6 @@ workflows:
             - docker-credentials
             - sonar-credentials
             - jumpcloud-credentials
-            - dependencycheck-credentials
           <<: *pr_filter
           requires:
             - validate_yamls

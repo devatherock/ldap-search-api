@@ -8,37 +8,20 @@
 - Specified all generated json config files except `serialization-config.json` to the `native-image` command
 - chore(deps): update plugin io.micronaut.application to v3.7.10
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v7.4
-- fix(deps): update dependency org.projectlombok:lombok to v1.18.30
 - Made the `gradle-includes` location configurable
-- chore(deps): update plugin org.sonarqube to v4.4.1.3373
 - Configure Mend Bolt for GitHub
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.4.14
-- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v6.0.11
-- fix(deps): update dependency org.codehaus.janino:janino to v3.1.11
-- chore(deps): update dependency gradle to v8.5
 - Upgraded micronaut to `3.10.3`
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.11
-- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.20
 - chore(deps): update plugin com.diffplug.spotless to v6.25.0
-- chore(deps): update cimg/openjdk docker tag to v17.0.10
 - fix(deps): update dependency org.codehaus.janino:janino to v3.1.12
-- chore(deps): update dependency gradle to v8.6
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.12
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.0
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.1
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.21
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.2
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.3
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.32
 - chore(deps): update dependency gradle to v8.7
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.13
 - chore(deps): update plugin org.sonarqube to v5
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.5
 - chore(deps): update cimg/openjdk docker tag to v17.0.11
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.6
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.14
-- chore(deps): update templates orb to v0.6.0
+- Combined the amd64 and arm64 images into a single multi-arch image
 
 ### Removed
 - Dependency check plugin
