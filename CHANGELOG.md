@@ -7,6 +7,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.16
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.17
 - chore(deps): update dependency gradle to v8.8
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.1
 
 ## [2.1.0] - 2024-05-04
 ### Added
