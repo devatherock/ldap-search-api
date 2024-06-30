@@ -9,6 +9,7 @@
 - chore(deps): update dependency gradle to v8.8
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.1
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.34
+- fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.22
 
 ## [2.1.0] - 2024-05-04
 ### Added
