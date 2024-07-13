@@ -45,7 +45,7 @@ dependencies {
     implementation "ch.qos.logback:logback-classic:1.5.6"
 
     testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
-    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.14.17'
+    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.14.18'
     testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.4'
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '7.0.1'
