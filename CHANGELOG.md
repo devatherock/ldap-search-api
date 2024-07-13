@@ -11,6 +11,7 @@
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.34
 - fix(deps): update dependency org.codehaus.groovy:groovy-json to v3.0.22
 - chore(deps): update plugin org.sonarqube to v5.1.0.4882
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.14.18
 
 ## [2.1.0] - 2024-05-04
 ### Added
