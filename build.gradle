@@ -42,7 +42,7 @@ dependencies {
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '8.0'
     implementation group: 'org.codehaus.janino', name: 'janino', version: '3.1.12'
     implementation group: 'javax.inject', name: 'javax.inject', version: '1'
-    implementation "ch.qos.logback:logback-classic:1.5.6"
+    implementation "ch.qos.logback:logback-classic:1.5.8"
 
     testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-3.0'
     testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.14.18'
