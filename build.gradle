@@ -63,14 +63,6 @@ java {
     targetCompatibility = JavaVersion.toVersion("1.8")
 }
 
-test {
-    doFirst {
-        if (Boolean.getBoolean('graalvm')) {
-            jvmArgs("-agentlib:native-image-agent=access-filter-file=$projectDir/src/main/resources/graal/access-filter.json,config-output-dir=$projectDir/build/graal")
-        }
-    }
-}
-
 // Generates resource-config.json file for graalvm
 build.dependsOn(generateResourcesConfigFile)
 
@@ -85,6 +77,7 @@ run {
 ext.jacoco = [
     exclusions: [
         'io/github/devatherock/ldapsearch/Application.class',
+        'io/github/devatherock/ldapsearch/config/GraalConfig.class',
     ],
     coverageThresholds: [
         'io.github.devatherock.logback.LogbackConfigInitializer': [
