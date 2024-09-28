@@ -6,6 +6,7 @@
 - Upgraded micronaut to `4.6.2`
 - Upgraded to Java 21
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.3
+- Built the native image using gradle
 
 ## [2.2.0] - 2024-09-26
 ### Changed

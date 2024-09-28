@@ -13,6 +13,7 @@ class RemoteUrlsIntegrationSpec extends RemoteUrlsSpec {
 
     void 'test log output'() {
         expect:
-        Files.readString(Paths.get('logs-intg-remote.txt')).contains('Startup completed')
+        Files.readString(Paths.get('logs-intg-remote.txt'))
+                .contains('INFO  io.micronaut.runtime.Micronaut - Startup completed')
     }
 }
