@@ -7,6 +7,7 @@
 - Upgraded to Java 21
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.3
 - Built the native image using gradle
+- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.23
 
 ## [2.2.0] - 2024-09-26
 ### Changed
