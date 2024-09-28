@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Changed
+- chore(deps): update dependency gradle to v8.10.2
+
+## [2.2.0] - 2024-09-26
+### Changed
 - fix(deps): update dependency org.objenesis:objenesis to v3.4
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.1
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.34
