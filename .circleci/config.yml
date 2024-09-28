@@ -5,7 +5,7 @@ docker_auth: &docker_auth
         
 docker_executor_image: &docker_executor_image
   docker:
-    - image: cimg/openjdk:17.0.11
+    - image: cimg/openjdk:21.0.2
       <<: *docker_auth
 
 vm_executor_image: &vm_executor_image

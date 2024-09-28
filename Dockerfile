@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/native-image-community:17-ol8 as graalvm
+FROM ghcr.io/graalvm/native-image-community:21-ol8 as graalvm
 
 COPY . /home/app/micronaut-graal-app
 WORKDIR /home/app/micronaut-graal-app
