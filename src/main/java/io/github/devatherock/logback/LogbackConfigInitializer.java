@@ -12,7 +12,7 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.util.ContextInitializer;
 import ch.qos.logback.core.joran.spi.JoranException;
-import ch.qos.logback.core.util.StatusPrinter;
+import ch.qos.logback.core.util.StatusPrinter2;
 
 /**
  * Initializes logging config using an environment variable. Needed for native
@@ -57,7 +57,7 @@ public class LogbackConfigInitializer {
             } finally {
                 config.close();
             }
-            StatusPrinter.printInCaseOfErrorsOrWarnings(context);
+            new StatusPrinter2().printInCaseOfErrorsOrWarnings(context);
         }
     }
 

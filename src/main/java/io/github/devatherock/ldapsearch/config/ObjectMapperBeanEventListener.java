@@ -1,7 +1,5 @@
 package io.github.devatherock.ldapsearch.config;
 
-import javax.inject.Singleton;
-
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +8,7 @@ import io.micronaut.context.event.BeanCreatedEvent;
 import io.micronaut.context.event.BeanCreatedEventListener;
 import io.micronaut.core.util.CollectionUtils;
 import io.micronaut.jackson.JacksonConfiguration;
+import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 
 /**

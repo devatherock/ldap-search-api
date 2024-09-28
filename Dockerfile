@@ -11,7 +11,7 @@ RUN native-image --verbose ${QUICK_BUILD} -cp build/libs/*-all.jar
 FROM gcr.io/distroless/base-debian11:latest
 
 LABEL maintainer="devatherock@gmail.com"
-LABEL io.github.devatherock.version="2.2.0"
+LABEL io.github.devatherock.version="2.3.0"
 
 EXPOSE 8080
 
