@@ -126,9 +126,10 @@ jobs:
       - run: |
           TAG=${CIRCLE_SHA1:0:8}-<< parameters.tag_suffix >>
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker build \
-            -t devatherock/ldap-search-api:$TAG \
-            -t devatherock/ldap-search-api:<< parameters.tag_suffix >> .
+          ./gradlew dockerBuildNative -Dnative.threads=2 -Dnative.xmx=3072m -Dnative.tag=$TAG
+          docker tag \
+            devatherock/ldap-search-api:$TAG \
+            devatherock/ldap-search-api:<< parameters.tag_suffix >>
           docker image push --all-tags devatherock/ldap-search-api
 
   integration_test:

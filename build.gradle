@@ -73,9 +73,6 @@ compileJava {
     ]
 }
 
-// Generates resource-config.json file for graalvm
-build.dependsOn(generateResourcesConfigFile)
-
 tasks.withType(Test) {
     useJUnitPlatform()
 }
@@ -99,6 +96,7 @@ ext.jacoco = [
     ]
 ]
 
+apply from: "${getPropertyValue('gradle.includes.location', 'https://raw.githubusercontent.com/devatherock/gradle-includes/master')}/native.gradle"
 apply from: "${getPropertyValue('gradle.includes.location', 'https://raw.githubusercontent.com/devatherock/gradle-includes/master')}/integration.gradle"
 apply from: "${getPropertyValue('gradle.includes.location', 'https://raw.githubusercontent.com/devatherock/gradle-includes/master')}/checks.gradle"
 

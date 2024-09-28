@@ -21,4 +21,5 @@ build-all:
 fast-build:
 	./gradlew build -x test
 docker-build:
-	docker build --progress=plain --build-arg QUICK_BUILD=-Ob -t devatherock/ldap-search-api:$(docker_tag) .
+	./gradlew dockerBuildNative -Dnative.threads=2 -Dnative.xmx=3072m \
+	    -Dnative.tag=$(docker_tag) -Dnative.arch=native -Dnative.mode=dev
