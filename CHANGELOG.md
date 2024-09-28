@@ -4,6 +4,7 @@
 ### Changed
 - chore(deps): update dependency gradle to v8.10.2
 - Upgraded micronaut to `4.6.2`
+- Upgraded to Java 21
 
 ## [2.2.0] - 2024-09-26
 ### Changed
