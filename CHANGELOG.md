@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Changed
+- chore(deps): update plugin io.micronaut.application to v4.4.3
+
+## [2.3.0] - 2024-09-29
+### Changed
 - chore(deps): update dependency gradle to v8.10.2
 - Upgraded micronaut to `4.6.2`
 - Upgraded to Java 21
