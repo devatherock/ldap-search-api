@@ -8,6 +8,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.10
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.11
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.5
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.12
 
 ## [2.3.0] - 2024-09-29
 ### Changed
