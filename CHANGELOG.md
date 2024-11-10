@@ -14,6 +14,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.9
 - chore(deps): update plugin io.micronaut.application to v4.4.4
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.10
+- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.24
 
 ## [2.3.0] - 2024-09-29
 ### Changed
