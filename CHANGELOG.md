@@ -16,6 +16,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.10
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.24
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.36
+- chore(deps): update dependency gradle to v8.11
 
 ## [2.3.0] - 2024-09-29
 ### Changed
