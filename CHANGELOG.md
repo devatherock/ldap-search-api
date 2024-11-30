@@ -19,6 +19,7 @@
 - chore(deps): update dependency gradle to v8.11
 - chore(deps): update dependency gradle to v8.11.1
 - chore(deps): update plugin org.sonarqube to v6
+- chore(deps): update plugin org.sonarqube to v6.0.1.5171
 
 ## [2.3.0] - 2024-09-29
 ### Changed
