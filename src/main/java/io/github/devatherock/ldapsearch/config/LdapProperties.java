@@ -6,7 +6,9 @@ import java.util.List;
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Context;
 import io.micronaut.core.annotation.Introspected;
+import io.micronaut.core.util.StringUtils;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -37,14 +39,18 @@ public class LdapProperties {
      * or a DN like {@code uid=devatherock,ou=Users,dc=jumpcloud,dc=com} depending
      * on how the LDAP server is configured
      */
-    @NotBlank(message = "ldap.username not specified")
     private String username;
 
     /**
      * The LDAP bind password
      */
-    @NotBlank(message = "ldap.password not specified")
     private String password;
+
+    /**
+     * Value for the {@code java.naming.security.authentication} property. Defaults
+     * to {@code simple}
+     */
+    private AuthenticationType authType = AuthenticationType.SIMPLE;
 
     /**
      * The default base DN to search against
@@ -64,6 +70,12 @@ public class LdapProperties {
     private long readTimeoutMillis = 10000;
 
     private LdapConnectionPoolProperties connectionPool = new LdapConnectionPoolProperties();
+
+    @AssertTrue(message = "ldap.username or ldap.password not specified")
+    public boolean isValidLdapCredentials() {
+        return AuthenticationType.NONE.equals(authType) ||
+                (StringUtils.hasText(username) && StringUtils.hasText(password));
+    }
 
     /**
      * Connection pool configuration
@@ -95,6 +107,18 @@ public class LdapProperties {
          * Defaults to 30 minutes
          */
         private long timeToLiveMillis = 1_800_000;
+    }
+
+    @Getter
+    public enum AuthenticationType {
+        NONE("none"),
+        SIMPLE("simple");
+
+        private final String code;
+
+        AuthenticationType(String code) {
+            this.code = code;
+        }
     }
 
     @PostConstruct
