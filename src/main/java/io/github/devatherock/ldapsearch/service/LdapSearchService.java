@@ -18,6 +18,7 @@ import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 import io.github.devatherock.ldapsearch.config.LdapProperties;
+import io.github.devatherock.ldapsearch.config.LdapProperties.AuthenticationType;
 
 import io.micronaut.core.util.CollectionUtils;
 import jakarta.inject.Singleton;
@@ -98,9 +99,13 @@ public class LdapSearchService {
         Hashtable<String, String> ldapEnv = new Hashtable<String, String>();
         ldapEnv.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         ldapEnv.put(Context.PROVIDER_URL, config.getHost());
-        ldapEnv.put(Context.SECURITY_AUTHENTICATION, "simple");
-        ldapEnv.put(Context.SECURITY_PRINCIPAL, config.getUsername());
-        ldapEnv.put(Context.SECURITY_CREDENTIALS, config.getPassword());
+        ldapEnv.put(Context.SECURITY_AUTHENTICATION, config.getAuthType().getCode());
+
+        if (AuthenticationType.SIMPLE.equals(config.getAuthType())) {
+            ldapEnv.put(Context.SECURITY_PRINCIPAL, config.getUsername());
+            ldapEnv.put(Context.SECURITY_CREDENTIALS, config.getPassword());
+        }
+
         ldapEnv.put("com.sun.jndi.ldap.connect.pool", String.valueOf(config.getConnectionPool().isEnabled()));
         ldapEnv.put("com.sun.jndi.ldap.read.timeout", String.valueOf(config.getReadTimeoutMillis()));
 

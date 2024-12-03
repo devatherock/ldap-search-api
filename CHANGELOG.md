@@ -1,24 +1,16 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- [#164](https://github.com/devatherock/ldap-search-api/issues/164): Support for anonymous access
+
 ### Changed
-- chore(deps): update plugin io.micronaut.application to v4.4.3
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.9
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.4
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.10
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.11
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.5
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.12
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.7
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.8
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.9
 - chore(deps): update plugin io.micronaut.application to v4.4.4
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.10
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.24
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.36
-- chore(deps): update dependency gradle to v8.11
 - chore(deps): update dependency gradle to v8.11.1
-- chore(deps): update plugin org.sonarqube to v6
 - chore(deps): update plugin org.sonarqube to v6.0.1.5171
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.2
 - chore(deps): update alpine docker tag to v3.21.0

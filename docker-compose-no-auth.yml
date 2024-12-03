@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+
+  ldap-search-api:
+    image: devatherock/ldap-search-api:${DOCKER_TAG:-latest}
+    container_name: ldap-search-api-intg-no-auth
+    network_mode: "host"
+    environment:
+      LDAP_HOST: ldap://localhost:33389
+      LDAP_AUTH_TYPE: none
+      LOGBACK_CONFIGURATION_FILE: logback-json.xml
+      JACKSON_SERIALIZATION_INDENT_OUTPUT: true
+
+  health:
+    image: alpine:3.21.0
+    network_mode: "host"
+    depends_on:
+      - ldap-search-api
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/health"]
+      interval: 2s
+      timeout: 60s
+      retries: 30
+    command: |
+      sh -c '
+        wget -q -O - http://localhost:8080/health
+        sleep 120
+      '

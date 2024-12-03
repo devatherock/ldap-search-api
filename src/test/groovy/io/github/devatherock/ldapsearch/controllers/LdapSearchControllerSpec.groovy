@@ -1,6 +1,7 @@
 package io.github.devatherock.ldapsearch.controllers
 
 import groovy.json.JsonSlurper
+import groovy.util.logging.Slf4j
 
 import com.unboundid.ldap.listener.InMemoryDirectoryServer
 import com.unboundid.ldap.listener.InMemoryDirectoryServerConfig
@@ -17,6 +18,7 @@ import spock.lang.Specification
 /**
  * Test class for {@link LdapSearchController}
  */
+@Slf4j
 abstract class LdapSearchControllerSpec extends Specification {
 
     @Shared
@@ -31,15 +33,19 @@ abstract class LdapSearchControllerSpec extends Specification {
     void setupSpec() {
         InMemoryDirectoryServerConfig config =
                 new InMemoryDirectoryServerConfig('dc=example,dc=com')
-        config.addAdditionalBindCredentials('cn=Directory Manager', 'testpwd')
         config.setListenerConfigs(
                 new InMemoryListenerConfig('testListener', null, 33389,
                         null, null, null))
+        customizeLdapConfig(config)
 
         directoryServer = new InMemoryDirectoryServer(config)
         directoryServer.importFromLDIF(true,
                 new File(LdapSearchControllerSpec.class.classLoader.getResource('test.ldif').toURI()))
         directoryServer.startListening()
+    }
+
+    protected void customizeLdapConfig(InMemoryDirectoryServerConfig config) {
+        log.debug("Customizing ldap config {}", config) // To suppress codeNarc unused method parameter violation
     }
 
     void cleanupSpec() {
