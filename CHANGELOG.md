@@ -21,6 +21,7 @@
 - chore(deps): update plugin org.sonarqube to v6
 - chore(deps): update plugin org.sonarqube to v6.0.1.5171
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.2
+- chore(deps): update alpine docker tag to v3.21.0
 
 ## [2.3.0] - 2024-09-29
 ### Changed
