@@ -12,7 +12,7 @@ services:
       MICRONAUT_CONFIG_FILES: '/config/application.yml'
 
   health:
-    image: alpine:3.20.3
+    image: alpine:3.21.0
     network_mode: "host"
     depends_on:
       - ldap-search-api
