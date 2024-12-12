@@ -1,0 +1,9 @@
+ldap:
+  host: ldap://localhost:33389
+  authType: none
+micronaut:
+  http.client.read-timeout: 30
+  server.port: 8091
+test:
+  server:
+    url: http://localhost:8091

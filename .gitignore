@@ -19,3 +19,4 @@ checkstyle.xml
 codenarc.xml
 logs-intg.txt
 logs-intg-remote.txt
+logs-intg-no-auth.txt

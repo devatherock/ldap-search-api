@@ -146,7 +146,7 @@ jobs:
             - v1-integration-{{ checksum "build.gradle" }}
             - v1-integration
       - run: |
-          make integration-test remote-integration-test
+          make integration-test no-auth-integration-test remote-integration-test
       - save_cache:
           paths:
             - ~/.gradle
