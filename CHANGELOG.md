@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.11
+
+## [2.4.0] - 2024-12-12
 ### Added
 - [#164](https://github.com/devatherock/ldap-search-api/issues/164): Support for anonymous access
 
