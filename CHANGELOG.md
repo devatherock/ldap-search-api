@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Changed
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.11
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.15
 
 ## [2.4.0] - 2024-12-12
 ### Added
