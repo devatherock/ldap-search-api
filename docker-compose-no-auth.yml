@@ -12,7 +12,7 @@ services:
       JACKSON_SERIALIZATION_INDENT_OUTPUT: true
 
   health:
-    image: alpine:3.21.0
+    image: alpine:3.21.2
     network_mode: "host"
     depends_on:
       - ldap-search-api
