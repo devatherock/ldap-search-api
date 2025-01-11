@@ -7,6 +7,7 @@
 - chore(deps): update dependency gradle to v8.12
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.16
 - chore(deps): update alpine docker tag to v3.21.2
+- chore(deps): update plugin com.diffplug.spotless to v7
 
 ## [2.4.0] - 2024-12-12
 ### Added
