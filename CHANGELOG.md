@@ -9,6 +9,7 @@
 - chore(deps): update alpine docker tag to v3.21.2
 - chore(deps): update plugin com.diffplug.spotless to v7
 - chore(deps): update plugin com.diffplug.spotless to v7.0.2
+- chore(deps): update dependency gradle to v8.12.1
 
 ## [2.4.0] - 2024-12-12
 ### Added
