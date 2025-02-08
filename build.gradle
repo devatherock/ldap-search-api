@@ -49,7 +49,7 @@ dependencies {
     runtimeOnly("org.yaml:snakeyaml")
 
     testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.3-groovy-4.0'
-    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.15.11'
+    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.17.0'
     testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.4'
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '7.0.2'
