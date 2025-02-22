@@ -14,6 +14,7 @@
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.25
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.0
 - chore(deps): update alpine docker tag to v3.21.3
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.1
 
 ## [2.4.0] - 2024-12-12
 ### Added
