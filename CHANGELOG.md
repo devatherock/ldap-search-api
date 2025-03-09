@@ -19,6 +19,7 @@
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.26
 - chore(deps): update dependency gradle to v8.13
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.2
+- chore(deps): update plugin io.micronaut.application to v4.5.0
 
 ## [2.4.0] - 2024-12-12
 ### Added
