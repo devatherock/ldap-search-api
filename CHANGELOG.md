@@ -21,6 +21,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.2
 - chore(deps): update plugin io.micronaut.application to v4.5.0
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.18
+- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.3
 
 ## [2.4.0] - 2024-12-12
 ### Added
