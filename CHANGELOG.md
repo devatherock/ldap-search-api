@@ -27,6 +27,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.5
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.38
 - chore(deps): update plugin io.micronaut.application to v4.5.3
+- chore(deps): update plugin org.sonarqube to v6.1.0.5360
 
 ## [2.4.0] - 2024-12-12
 ### Added
