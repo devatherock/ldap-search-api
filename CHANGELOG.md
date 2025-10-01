@@ -31,6 +31,7 @@
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v8.1
 - chore(deps): update dependency gradle to v8.14
 - chore(deps): update plugin org.sonarqube to v6.3.1.5724
+- chore(deps): update gradle to v8.14.3
 
 ## [2.4.0] - 2024-12-12
 ### Added
