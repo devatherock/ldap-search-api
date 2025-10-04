@@ -52,7 +52,7 @@ dependencies {
     testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.17.5'
     testImplementation group: 'org.objenesis', name: 'objenesis', version: '3.4'
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
-    testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '7.0.2'
+    testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '7.0.3'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
     testImplementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.26'
 }
