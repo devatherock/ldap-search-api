@@ -32,6 +32,7 @@
 - chore(deps): update dependency gradle to v8.14
 - chore(deps): update plugin org.sonarqube to v6.3.1.5724
 - chore(deps): update gradle to v8.14.3
+- chore(deps): update plugin io.micronaut.application to v4.5.5
 
 ## [2.4.0] - 2024-12-12
 ### Added
