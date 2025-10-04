@@ -34,6 +34,7 @@
 - chore(deps): update gradle to v8.14.3
 - chore(deps): update plugin io.micronaut.application to v4.5.5
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.19
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.3
 
 ## [2.4.0] - 2024-12-12
 ### Added
