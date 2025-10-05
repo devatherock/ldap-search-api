@@ -36,6 +36,7 @@
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.19
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.3
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.7
+- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.28
 
 ## [2.4.0] - 2024-12-12
 ### Added

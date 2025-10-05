@@ -54,7 +54,7 @@ dependencies {
     testImplementation group: 'io.micronaut.test', name: 'micronaut-test-spock'
     testImplementation group: 'com.unboundid', name: 'unboundid-ldapsdk', version: '7.0.3'
     testImplementation group: 'io.micronaut', name: 'micronaut-http-client'
-    testImplementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.26'
+    testImplementation group: 'org.apache.groovy', name: 'groovy-json', version: '4.0.28'
 }
 
 application {
