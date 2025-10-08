@@ -38,6 +38,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.7
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.28
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.42
+- chore(deps): update alpine docker tag to v3.22.2
 
 ## [2.4.0] - 2024-12-12
 ### Added
