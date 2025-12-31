@@ -41,6 +41,7 @@
 - chore(deps): update alpine docker tag to v3.22.2
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.8
 - chore(deps): update plugin com.diffplug.spotless to v7.2.1
+- chore(deps): update gradle to v9
 
 ## [2.4.0] - 2024-12-12
 ### Added
