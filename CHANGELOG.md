@@ -13,6 +13,7 @@
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.8
 - chore(deps): update gradle to v9
 - Switched to com.gradleup.shadow gradle plugin from com.github.johnrengelman.shadow
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.24
 
 ## [2.4.0] - 2024-12-12
 ### Added
