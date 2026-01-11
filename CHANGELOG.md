@@ -2,45 +2,17 @@
 
 ## [Unreleased]
 ### Changed
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.15.11
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.15
-- chore(deps): update dependency gradle to v8.12
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.16
-- chore(deps): update alpine docker tag to v3.21.2
-- chore(deps): update plugin com.diffplug.spotless to v7
-- chore(deps): update plugin com.diffplug.spotless to v7.0.2
-- chore(deps): update dependency gradle to v8.12.1
-- chore(deps): update plugin io.micronaut.application to v4.4.5
-- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.25
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.0
-- chore(deps): update alpine docker tag to v3.21.3
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.1
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.17
-- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.26
-- chore(deps): update dependency gradle to v8.13
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.2
-- chore(deps): update plugin io.micronaut.application to v4.5.0
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.18
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.3
-- chore(deps): update plugin io.micronaut.application to v4.5.2
-- chore(deps): update plugin com.diffplug.spotless to v7.0.3
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.5
-- fix(deps): update dependency org.projectlombok:lombok to v1.18.38
-- chore(deps): update plugin io.micronaut.application to v4.5.3
-- chore(deps): update plugin org.sonarqube to v6.1.0.5360
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v8.1
-- chore(deps): update dependency gradle to v8.14
 - chore(deps): update plugin org.sonarqube to v6.3.1.5724
-- chore(deps): update gradle to v8.14.3
 - chore(deps): update plugin io.micronaut.application to v4.5.5
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.19
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.3
-- fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.7
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.28
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.42
 - chore(deps): update alpine docker tag to v3.22.2
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.8
-- chore(deps): update plugin com.diffplug.spotless to v7.2.1
+- chore(deps): update gradle to v9
+- Switched to com.gradleup.shadow gradle plugin from com.github.johnrengelman.shadow
 
 ## [2.4.0] - 2024-12-12
 ### Added
