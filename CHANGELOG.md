@@ -15,6 +15,7 @@
 - Switched to com.gradleup.shadow gradle plugin from com.github.johnrengelman.shadow
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.24
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.4
+- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.26
 
 ## [2.4.0] - 2024-12-12
 ### Added
