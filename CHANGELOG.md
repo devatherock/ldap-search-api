@@ -16,6 +16,7 @@
 - chore(deps): update cimg/openjdk docker tag to v21.0.12
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.5
 - Increased build resource class due to out of memory error
+- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.33
 
 ### Removed
 - Coveralls plugin
