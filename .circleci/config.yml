@@ -41,7 +41,7 @@ parameters:
 executors:
   jdk-executor:
     <<: *docker_executor_image
-    <<: *resource_class
+    resource_class: medium
     <<: *work_directory
     environment:
       # To generate swagger UI
