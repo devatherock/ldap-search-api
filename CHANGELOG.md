@@ -14,6 +14,7 @@
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.30
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.37
 - chore(deps): update cimg/openjdk docker tag to v21.0.12
+- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.5
 
 ### Removed
 - Coveralls plugin
