@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/devatherock/ldap-search-api.svg?style=svg)](https://circleci.com/gh/devatherock/ldap-search-api)
 [![Version](https://img.shields.io/docker/v/devatherock/ldap-search-api?sort=semver)](https://hub.docker.com/r/devatherock/ldap-search-api/)
-[![Coverage Status](https://coveralls.io/repos/github/devatherock/ldap-search-api/badge.svg?branch=master)](https://coveralls.io/github/devatherock/ldap-search-api?branch=master)
+[![Coverage Status](https://sonarcloud.io/api/project_badges/measure?project=ldap-search-api&metric=coverage)](https://sonarcloud.io/component_measures?id=ldap-search-api&metric=coverage)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ldap-search-api&metric=alert_status)](https://sonarcloud.io/component_measures?id=ldap-search-api&metric=alert_status&view=list)
 [![Docker Pulls](https://img.shields.io/docker/pulls/devatherock/ldap-search-api.svg)](https://hub.docker.com/r/devatherock/ldap-search-api/)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ldap-search-api&metric=ncloc)](https://sonarcloud.io/component_measures?id=ldap-search-api&metric=ncloc)
