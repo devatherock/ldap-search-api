@@ -5,21 +5,18 @@
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v8.1
 - chore(deps): update plugin org.sonarqube to v6.3.1.5724
 - chore(deps): update plugin io.micronaut.application to v4.5.5
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.19
-- fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.3
-- fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.28
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.42
 - chore(deps): update alpine docker tag to v3.22.2
 - fix(deps): update dependency net.bytebuddy:byte-buddy to v1.17.8
 - chore(deps): update gradle to v9
 - Switched to com.gradleup.shadow gradle plugin from com.github.johnrengelman.shadow
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.24
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.4
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.26
 - fix(deps): update dependency org.apache.groovy:groovy-json to v4.0.30
-- fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.27
 - fix(deps): update dependency ch.qos.logback:logback-classic to v1.5.37
 - chore(deps): update cimg/openjdk docker tag to v21.0.12
+
+### Removed
+- Coveralls plugin
 
 ## [2.4.0] - 2024-12-12
 ### Added
