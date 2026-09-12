@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Changed
+- fix(deps): update dependency org.projectlombok:lombok to v1.18.48
+
+## [2.5.0] - 2026-09-09
+### Changed
 - fix(deps): update dependency net.logstash.logback:logstash-logback-encoder to v8.1
 - chore(deps): update plugin org.sonarqube to v6.3.1.5724
 - chore(deps): update plugin io.micronaut.application to v4.5.5
