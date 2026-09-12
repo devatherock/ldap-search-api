@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Changed
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.48
+- chore(deps): update alpine docker tag to v3.24.1
 
 ## [2.5.0] - 2026-09-09
 ### Changed
