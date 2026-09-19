@@ -5,6 +5,7 @@
 - fix(deps): update dependency org.projectlombok:lombok to v1.18.48
 - chore(deps): update alpine docker tag to v3.24.1
 - chore(deps): update gradle to v9.7.1
+- chore(deps): update alpine docker tag to v3.24.2
 
 ## [2.5.0] - 2026-09-09
 ### Changed
