@@ -7,6 +7,7 @@
 - chore(deps): update gradle to v9.7.1
 - chore(deps): update alpine docker tag to v3.24.2
 - chore(deps): update gradle to v9.8.2
+- chore(deps): update alpine docker tag to v3.24.3
 
 ## [2.5.0] - 2026-09-09
 ### Changed
