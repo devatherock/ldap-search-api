@@ -8,6 +8,7 @@
 - chore(deps): update alpine docker tag to v3.24.2
 - chore(deps): update gradle to v9.8.2
 - chore(deps): update alpine docker tag to v3.24.4
+- chore(deps): update cimg/openjdk docker tag to v21.0.13
 
 ## [2.5.0] - 2026-09-09
 ### Changed
