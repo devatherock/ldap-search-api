@@ -10,6 +10,7 @@
 - chore(deps): update alpine docker tag to v3.24.4
 - chore(deps): update cimg/openjdk docker tag to v21.0.13
 - fix(deps): update dependency com.unboundid:unboundid-ldapsdk to v7.0.6
+- chore(deps): update gradle to v9.9.2
 
 ## [2.5.0] - 2026-09-09
 ### Changed
